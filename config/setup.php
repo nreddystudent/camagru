@@ -26,9 +26,9 @@
             PRIMARY KEY(id)
             );";
         $connection->exec($statement);
-        // $statement = 'INSERT INTO USERS(first_name, last_name, email, `password`, is_admin)
-        // VALUES("admin", "admin", "nolin.reddy@gmail.com", 1234, 1)';
-        // $connection->exec($statement);
+        $statement = 'INSERT INTO USERS(first_name, last_name, email, `password`, is_admin)
+        VALUES("admin", "admin", "nolin.reddy@gmail.com", 1234, 1)';
+        $connection->exec($statement);
     }
     catch(PDOException $e){
         echo $statement."<br>".$e->getMessage();
