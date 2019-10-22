@@ -15,6 +15,7 @@
 
     try{
         $connection = new PDO($DB_DSNF, $DB_USER, $DB_PASSWORD);
+        $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $statement = "CREATE TABLE USERS(
             id INT NOT NULL AUTO_INCREMENT,
             first_name VARCHAR(100) NOT NULL,
