@@ -1,9 +1,4 @@
 <?php
-		$DB_DSN = 'mysql:host=localhost';
-		$DB_USER = 'root';
-		$DB_PASSWORD = 'ichigo0808';
-		$DB_NAME = 'myshit';
-		$DB_DSNF = "";
 	class DB{
 		private static $_instance = NULL;
 		private $_pdo , $_query, $_error = false, $_result, $_count = 0, $_lastInsertID = null;
@@ -30,12 +25,12 @@
 				$x = 1;
 				if (count($params)){
 					foreach($params as  $param){
-						$this->query->bindValue($x, $param);
+						$this->_query->bindValue($x, $param);
 						$x++; 
 					}
 				}
 				if ($this->_query->execute()){
-					$this->_result =  $this->_query->fetchAll(PDO::FETCH_OBJ);
+					$this->_result =  $this->_query->fetchALL(PDO::FETCH_OBJ);
 					$this->_count = $this->_query->rowCount();
 					$this->_lastInsertID = $this->_pdo->lastInsertID();
 				}
@@ -44,6 +39,31 @@
 				}
 				return $this;
 			}
+		}
+
+		public function insert($table, $fields = []){
+			$fieldString = '';
+			$valueString = '';
+			$values = [];
+
+			foreach($fields as $field => $value){
+				$fieldString .=  '`' . $field . '`,' ; 
+				$valueString .=  '?,';
+				$values[] = $value; 
+			}
+			$fieldString = rtrim($fieldString, ',');
+			$valueString = rtrim($valueString, ',');
+			$sql = "INSERT INTO {$table}({$fieldString}) VALUES({$valueString})";
+			dnd($sql);
+			if (!$this->query($sql, $values)->error()){
+				return true;
+			}
+			else{
+				return false;
+			}
+		}
+		public function error(){
+			return $this->_error; 
 		}
 	}
 ?>
