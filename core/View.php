@@ -45,7 +45,7 @@
 			}
 		}
 		public function siteTitle() {
-			return ($_siteTitle);
+			return $this->_siteTitle;
 		}
 		public function setSiteTitle($title){
 			$this->_siteTitle = $title;
