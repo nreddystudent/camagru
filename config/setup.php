@@ -16,19 +16,29 @@
     try{
         $connection = new PDO($DB_DSNF, $DB_USER, $DB_PASSWORD);
         $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $statement = "CREATE TABLE USERS(
+        $statement = "CREATE TABLE users(
             id INT NOT NULL AUTO_INCREMENT,
-            first_name VARCHAR(100) NOT NULL,
-            last_name VARCHAR(100) NOT NULL,
+            username VARCHAR(150) NOT NULL,
             email VARCHAR(255) NOT NULL,
             `password` VARCHAR(255)NOT NULL,
+            first_name VARCHAR(150) NOT NULL,
+            last_name VARCHAR(100) NOT NULL,
+            acl TEXT,
             creation_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-            is_admin TINYINT NOT NULL,
             PRIMARY KEY(id)
             );";
         $connection->exec($statement);
-        $statement = 'INSERT INTO USERS(first_name, last_name, email, `password`, is_admin)
-        VALUES("admin", "admin", "nolin.reddy@gmail.com", 1234, 1)';
+        $statement = 'INSERT INTO users(username, email, `password`, first_name, last_name)
+        VALUES("admin", "nolin.reddy@gmail.com", 1234, "admin", "admin")';
+        $connection->exec($statement);
+        $statement = "CREATE TABLE user_sessions(
+            id INT NOT NULL AUTO_INCREMENT,
+            user_id INT NOT NULL,
+            email VARCHAR(255) NOT NULL,
+            `session` VARCHAR(255)NOT NULL,
+            user_agent VARCHAR(255) NOT NULL,
+            PRIMARY KEY(id)
+            );";
         $connection->exec($statement);
     }
     catch(PDOException $e){
