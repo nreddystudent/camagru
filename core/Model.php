@@ -44,6 +44,69 @@
 			findFirst(['conditions' => 'id = ?', 'bind' => [$id]]);
 		}
 
+		public function save(){
+			$fields = [];
+			foreach($this->_columnNames as $column){
+				$fields[$column] = $this->$column;
+			}
+			//determine whether update or insert
+			if (property_exists($this, 'id' && $this->id != '')){
+				return $this->update($this->id, $fields);
+				}
+			else {
+				return $this->insert($fields);
+			}
+		}
+
+		public function insert($fields){
+			if (empty($fields)){
+				return false;
+			}
+			return $this->_db->insert($this->_table, $fields);
+		}
+
+		public function update($id, $fields){
+			if (empty($fields)|| $id == ''){
+				return false;
+			}
+			return $this->_db->update($this->_table, $id, $fields);
+		}
+
+		public function delete($id){
+			if ($id == '' && $this->id == ""){
+				return false;
+			}
+			($id == '') ? $id = $this->id : $id;
+			if ($this->_softDelete){
+				$this->update($id, ['deleted' => 1]);
+			}
+			return $this->_db->delete($this->_table, $id);
+		}
+		
+
+		public function query($sql, $bind = []){
+			return $this->_db->query($sql, $bind);
+		}
+
+		public function data(){
+			$data = new stdClass();
+			foreach ($this->_columnNames as $column){//columnNames
+				$data->column = $this->column;//$column
+			}
+			return $data;
+		}
+
+		public function assign($params){
+			if (!empty($params)){
+				foreach($params as $key => $value){
+					if (in_aray($key, $this->_columnNames)){
+						$this->$key = sanitize($val);//key
+					}
+				}
+				return true;
+			}
+			return false;
+		}
 		protected function populateObjData($result){
 			foreach($result as $key => $value){
 				$this->$key = $value;
