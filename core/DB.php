@@ -30,9 +30,9 @@
 					}
 				}
 				if ($this->_query->execute()){
+					//$this->_result =  $this->_query->fetchALL(PDO::FETCH_OBJ);
 					$this->_count = $this->_query->rowCount();
 					$this->_lastInsertID = $this->_pdo->lastInsertId();
-					//$this->_result =  $this->_query->fetchALL(PDO::FETCH_OBJ);
 				}
 				else{
 					$this->_error = true; 
@@ -78,7 +78,7 @@
 			else{
 				return false;
 			}
-			}
+		}
 
 		public function delete($table, $id){
 			$sql = "DELETE FROM {$table} WHERE id = {$id}";
@@ -88,6 +88,11 @@
 			else{
 				return false;
 			}
+		}
+
+		public function results(){
+			$this->_result =  $this->_query->fetchALL(PDO::FETCH_OBJ);
+			return $this->_result;
 		}
 
 		public function error(){
