@@ -5,14 +5,10 @@
 		}	
 		public function indexAction(){
 			$db = DB::getInstance();
-			$fields =  [
-				'first_name' => 'Nol',
-				'last_name' => 'RED',
-				'email' => 'me@mail.com',
-				'password' => '12334',
-				'is_admin' => 0
-			];
-			$db->insert('users', $fields);
+			$db->findFirst('users', [
+			 	'conditions' => 'first_name = ?',
+		 		'bind' => ['Nol'],
+			 ]);
 			$this->view->render('home/index');
 		}
 	}

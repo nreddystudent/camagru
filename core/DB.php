@@ -21,6 +21,7 @@
 		}
 		public function query($sql, $params = []){
 			$this->_error = false;
+			$string = explode(" ", $sql);
 			if ($this->_query = $this->_pdo->prepare($sql)){
 				$x = 1;
 				if (count($params)){
@@ -30,7 +31,8 @@
 					}
 				}
 				if ($this->_query->execute()){
-					//$this->_result =  $this->_query->fetchALL(PDO::FETCH_OBJ);
+					if ($string[0] == "SELECT" || $string[0] == "select")
+						$this->_result =  $this->_query->fetchALL(PDO::FETCH_OBJ);
 					$this->_count = $this->_query->rowCount();
 					$this->_lastInsertID = $this->_pdo->lastInsertId();
 				}
@@ -39,6 +41,69 @@
 				}
 				return $this;
 			}
+		}
+
+		protected function _read($table, $params = []){
+			$conditionString = '';
+			$bind = [];
+			$order = '';
+			$limit = '';
+
+			// conditions(array or kv pair)
+			if (isset($params['conditions'])){
+				if (is_array($params['conditions'])){
+					foreach($params['conditions'] as $condition => $value){
+						$conditionString .= ' ' . "$condition = $value" . " AND";
+					}
+					$conditionString = trim($conditionString);
+					$conditionString = rtrim($conditionString, " AND");
+				}
+				else{
+					$conditionString = $params['conditions'];
+				}
+				if ($conditionString != ''){
+					$conditionString = " WHERE " . $conditionString;
+				}
+			}
+			// bind
+			if (array_key_exists('bind', $params)){
+				$bind = $params['bind'];
+			}
+			// order
+			if (array_key_exists('order', $params)){
+				$order = ' ORDER BY ' . $params['order'];
+			}
+			// limit
+			if (array_key_exists('limit', $params)){
+				$limit = " LIMIT " . $params['limit'];
+			}
+			$sql = "SELECT * FROM {$table}{$conditionString}{$order}{$limit}";
+			if ($this->query($sql, $bind)){
+				$this->results();
+				if (!count($this->_result)){
+					return false;
+				}
+				else {
+					return true;
+				}
+			}
+			return false;
+		}
+
+		public function find($table, $params = []){
+			if($this->_read($table,$params)){
+				return $this->_result;
+			}
+			else{
+				return false;
+			}
+		}
+
+		public function findFirst($table, $params = []){
+			if($this->_read($table,$params)){
+				return $this->first();
+			}
+			return false;
 		}
 
 		public function insert($table, $fields = []){
@@ -91,8 +156,23 @@
 		}
 
 		public function results(){
-			$this->_result =  $this->_query->fetchALL(PDO::FETCH_OBJ);
 			return $this->_result;
+		}
+
+		public function first(){
+			return(!empty($this->_result) ? $this->_result[0] : []);
+		}
+
+		public function count(){
+			return ($this->_count);
+		}
+
+		public function lastID(){
+			return ($this->lastInsertID);
+		}
+
+		public function get_columns($table){
+			return ($this->query("SHOW COLUMNS FROM {$table}")->results());
 		}
 
 		public function error(){
