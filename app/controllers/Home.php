@@ -7,14 +7,10 @@
 			$db = DB::getInstance();
 			$fields =  [
 				'first_name' => 'Nol',
-				'last_name' => 'Red',
-				'email' => 'me@mail.com',
-				'password' => '12334',
-				'is_admin' => 0
+				'last_name' => 'REEEE',
 			];
-			$contactsQ = $db->insert('users', $fields);
+			$db->delete('users', '66');
 			$this->view->render('home/index');
-
 		}
 	}
 ?>
