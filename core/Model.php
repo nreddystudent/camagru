@@ -7,12 +7,13 @@
 			$this->_db = DB::getInstance();
 			$this->_table = $table;
 			$this->_setTableColumns();
-			$this->_modelName = str_replace(' ', '', ucwords(str_replace('_', ' ', $this->table)));
+			$this->_modelName = str_replace(' ', '', ucwords(str_replace('_', ' ', $this->_table)));
 		}
 
 		protected function _setTableColumns(){
 			$columns = $this->get_columns();
 			foreach ($columns as $column){
+				$columnName = $column->Field;
 				$this->$columnNames[] = $column->Field;
 				$this->{$columnName} = null;
 			}
@@ -35,8 +36,10 @@
 
 		public function findFirst($params = []){
 			$resultQuery = $this->_db->findFirst($this->_table, $params);
-			$result = new $this->_modelName($this->table);
-			$result->populateObjData($resultQuery);
+			$result = new $this->_modelName($this->_table);
+			if ($resultQuery){
+				$result->populateObjData($resultQuery);
+			}
 			return $result;
 		}
 

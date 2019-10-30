@@ -172,7 +172,7 @@
 		}
 
 		public function get_columns($table){
-			return ($this->query("SHOW COLUMNS FROM {$table}")->results());
+			return $this->query("SHOW COLUMNS FROM {$table}");
 		}
 
 		public function error(){

@@ -13,4 +13,8 @@
 
 	define ('DEFAULT_LAYOUT', 'default'); // DEF layout for controller
 	define ('DEFAULT_SITE_TITLE', 'Camagru'); 
+
+	define('CURRENT_USER_SESSION_NAME', 'fsfsffewsirfkDFSDAFSffsdfd'); //session name for logged in user
+	define('REMEMBER_ME_COOKIE_NAME', 'HJMIYSEDJhjnhnSIFJSfsdfFJJFE'); // cookie name for logged in user rember me
+	define('REMEMBER_ME_COOKIE_EXPIRY', 604800); // expiry date set to month for remember me cookie	
 ?>
