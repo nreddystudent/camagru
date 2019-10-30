@@ -8,7 +8,7 @@
 			if(isset($_POST[$input])){
 				return self::sanitize($_POST[$input]);
 			}
-			else if(isset($_get[$input])){
+			else if(isset($_GET[$input])){
 				return self::sanitize($_GET[$input]);
 			}
 		}

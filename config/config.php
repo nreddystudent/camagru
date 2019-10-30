@@ -16,5 +16,5 @@
 
 	define('CURRENT_USER_SESSION_NAME', 'fsfsffewsirfkDFSDAFSffsdfd'); //session name for logged in user
 	define('REMEMBER_ME_COOKIE_NAME', 'HJMIYSEDJhjnhnSIFJSfsdfFJJFE'); // cookie name for logged in user rember me
-	define('REMEMBER_ME_COOKIE_EXPIRY', 604800); // expiry date set to month for remember me cookie	
+	define('REMEMBER_ME_COOKIE_EXPIRY', 2592000); // expiry date set to month for remember me cookie	
 ?>

@@ -22,12 +22,14 @@
 					 switch($rule){
 						case 'min':
 							if (strlen($value) < $rule_value){
+								echo "tooooo short";
 								$this->addError("{$display} must be a minmum of {$rule_value} characters");
 							}
 							break;
 
-						case 'max';
+						case 'max':
 							if (strlen($value) > $rule_value){
+								echo "fsdfdsfsfd";
 								$this->addError("{$display} must be a maximum of {$rule_value} characters");
 							}
 							break;
@@ -70,10 +72,14 @@
 				 }
 			 }
 		}
+		if(empty($this->_errors)){
+			$this->_passed = true;
+		}
+		return $this;
 	}
 
 	public function addError($error){
-		$this->_errors = $error;
+		$this->_errors[] = $error;
 		if (empty($this->_errors)){
 			$this->_passed = true;
 		}
@@ -91,8 +97,13 @@
 	public function displayErrors(){
 		$html = '<ul class="bg-danger>"';
 		foreach($this->_errors as $error){
+			if (is_array($error)){
 			$html .= '<li class="text-danger">' .$error[0].'</li>';
 			$html .= "<script></script>";//add class here with js
+			}
+			else{
+				$html .= '<li class="text-danger">'.$error.'</li>';
+			}
 		}
 		$html .= '<ul>';
 		return $html;

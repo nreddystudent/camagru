@@ -92,7 +92,7 @@
 
 		public function find($table, $params = []){
 			if($this->_read($table,$params)){
-				return $this->_result;
+				return $this->results();
 			}
 			else{
 				return false;
