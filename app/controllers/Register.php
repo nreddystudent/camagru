@@ -84,6 +84,12 @@
 						'matches' => 'password'
 					]
 				]);
+				if ($validation->passed()){
+					$newUser = new Users;
+					 $newUser->registerNewUser($_POST);
+					 $newUser->login();
+					 Router::redirect(''); 
+				}
 			}
 			$this->view->post = $posted_values;
 			$this->view->displayErrors = $validation->displayErrors();

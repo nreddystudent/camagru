@@ -31,7 +31,7 @@
 					}
 				}
 				if ($this->_query->execute()){
-					if ($string[0] == "SELECT" || $string[0] == "select")
+					if ($string[0] == "SELECT" || $string[0] == "select"|| $string[0] == "SHOW" || $string[0] == "show")
 						$this->_result =  $this->_query->fetchALL(PDO::FETCH_OBJ);
 					$this->_count = $this->_query->rowCount();
 					$this->_lastInsertID = $this->_pdo->lastInsertId();
@@ -172,7 +172,7 @@
 		}
 
 		public function get_columns($table){
-			return $this->query("SHOW COLUMNS FROM {$table}");
+			return $this->query("SHOW COLUMNS FROM {$table}")->results();
 		}
 
 		public function error(){

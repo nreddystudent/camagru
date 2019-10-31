@@ -14,7 +14,7 @@
 			$columns = $this->get_columns();
 			foreach ($columns as $column){
 				$columnName = $column->Field;
-				$this->$columnNames[] = $column->Field;
+				$this->_columnNames[] = $column->Field;
 				$this->{$columnName} = null;
 			}
 		}
@@ -50,10 +50,11 @@
 		public function save(){
 			$fields = [];
 			foreach($this->_columnNames as $column){
-				$fields[$column] = $this->$column;
+				if ($column != 'creation_date')
+					$fields[$column] = $this->$column;
 			}
 			//determine whether update or insert
-			if (property_exists($this, 'id' && $this->id != '')){
+			if (property_exists($this, 'id') && $this->id != ''){
 				return $this->update($this->id, $fields);
 				}
 			else {
@@ -102,8 +103,8 @@
 		public function assign($params){
 			if (!empty($params)){
 				foreach($params as $key => $value){
-					if (in_aray($key, $this->_columnNames)){
-						$this->$key = sanitize($val);//key
+					if (in_array($key, $this->_columnNames)){
+						$this->$key = sanitize($value);//key
 					}
 				}
 				return true;
