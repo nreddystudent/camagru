@@ -4,7 +4,7 @@
 			parent::__construct($controller, $action);
 		}	
 		public function indexAction(){
-			dnd(currentUser()->username);
+			dnd($_SESSION);
 			$this->view->render('home/index');
 		}
 	}
