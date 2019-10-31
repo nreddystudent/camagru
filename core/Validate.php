@@ -12,24 +12,22 @@
 			foreach($items as $item => $rules){
 				$item = Input::sanitize($item);
 				$display = $rules['display'];
-			}
+			
 			foreach($rules as $rule => $rule_value){
-			 	$value = Input::sanitize(trim($source[$item]));
-			 	if ($rule == 'required' && empty($value)){
-			 		$this->addError(["{$display} is required", $item]);
-				 }
-				 else if (!empty($value)){
-					 switch($rule){
+				$value = Input::sanitize(trim($source[$item]));
+				if ($rule == 'required' && empty($value)){
+					$this->addError(["{$display} is required", $item]);
+				}
+				else if (!empty($value)){
+					switch($rule){
 						case 'min':
 							if (strlen($value) < $rule_value){
-								echo "tooooo short";
 								$this->addError("{$display} must be a minmum of {$rule_value} characters");
 							}
 							break;
 
 						case 'max':
 							if (strlen($value) > $rule_value){
-								echo "fsdfdsfsfd";
 								$this->addError("{$display} must be a maximum of {$rule_value} characters");
 							}
 							break;
@@ -71,6 +69,7 @@
 							break;
 				 }
 			 }
+			}
 		}
 		if(empty($this->_errors)){
 			$this->_passed = true;

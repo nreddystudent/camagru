@@ -22,7 +22,6 @@
 	session_start(); 
 	$url = isset($_SERVER['PATH_INFO']) ? explode(DS,ltrim($_SERVER['PATH_INFO'], '/')) : [];
 
-	 //$db = DB::getInstance();
 	if (!Session::exists(CURRENT_USER_SESSION_NAME) && COOKIE::exists(REMEMBER_ME_COOKIE_NAME)){
 		Users::loginUserFromCookie();
 	}

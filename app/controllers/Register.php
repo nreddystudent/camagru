@@ -43,5 +43,51 @@
 			}
 			Router::redirect('register/login');
 		}
+
+		public function registerAction(){
+			//make variable names same as table names for safety
+			$validation = new Validate();
+			$posted_values = ['first_name' => '' ,'last_name' => '', 'username' => '', 'email' => '', 'password' => '', 'passwc'=> ''];
+			if ($_POST){
+				$posted_values = posted_values($_POST);
+				$validation->check($_POST, [
+					'first_name' => [
+						'display' => 'First Name',
+						'required' => true
+					],
+					'last_name' => [
+						'display' => 'Last Name',
+						'required' => true
+					],
+					'username' => [
+						'display' => 'User Name',
+						'required' => true,
+						'unique' => 'users',
+						'min' => 6,
+						'max' => 150
+					],
+					'email' => [
+						'display' => 'Email',
+						'required' => true,
+						'unique' => 'users',
+						'valid_email' => true,
+						'max' => 150
+					],
+					'password' => [
+						'display' => 'Password',
+						'required' => true,
+						'min' => 6
+					],
+					'passwc' => [
+						'display' => 'Confirm Password',
+						'required' => true,
+						'matches' => 'password'
+					]
+				]);
+			}
+			$this->view->post = $posted_values;
+			$this->view->displayErrors = $validation->displayErrors();
+			$this->view->render('register/register');
+		}
 	}
 ?>
