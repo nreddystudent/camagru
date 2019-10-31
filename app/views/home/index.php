@@ -26,7 +26,7 @@
 			<div class="face face2">
 				<div class="content">
 					<p>Edit and upload images</p>
-					<a href="#">Go</a>
+					<a href="<?=PROOT?>upload/index">Go</a>
 				</div>
 			</div>
 		</div>
