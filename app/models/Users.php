@@ -23,6 +23,7 @@
 		}
 
 		public function findByUsername($username){
+			
 			return $this->findFirst(['conditions' => "username = ?", 'bind' => [$username]]);
 		}
 

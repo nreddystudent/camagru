@@ -20,7 +20,7 @@
 					]
 				]);
 				if ($validation->passed()){
-					$user = $this->UsersModel->findByUsername($_POST['uname']);
+					$user = $this->UsersModel->findByUsername($_POST['username']);
 					 if (isset($user->password)){
 						if ($user && password_verify(Input::get('password'), $user->password)){
 							$remember = (isset($_POST['remember_me']) && Input::get('remember_me')) ? true : false;

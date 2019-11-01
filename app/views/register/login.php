@@ -15,7 +15,7 @@
 		</div>
 		<form class="form" action="<?=PROOT?>register/login" method="POST">
 			<div class="inputBox form-group">
-				 <input type="text" name="uname" class="form-control" required="">
+				 <input type="text" name="username" class="form-control" required="">
 				 <label>Username</label>
 			</div>
 			<div class="inputBox form-group">

@@ -34,7 +34,6 @@
         $statement = "CREATE TABLE user_sessions(
             id INT NOT NULL AUTO_INCREMENT,
             user_id INT NOT NULL,
-            email VARCHAR(255) NOT NULL,
             `session` VARCHAR(255)NOT NULL,
             user_agent VARCHAR(255) NOT NULL,
             PRIMARY KEY(id)
