@@ -3,8 +3,7 @@ body{
     margin: 0;
     font-family: "montserrat", sans-serif;
     min-height: 100vh;
-    background: rgba(0, 0, 0, 0.7);
-    
+    background: rgba(150, 0, 0, 0.7);
 }
 
 section{
@@ -132,4 +131,5 @@ section{
 
 .container a:hover{
     font-size:23px;
+    color: black;
 }
