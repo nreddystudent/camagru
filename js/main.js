@@ -32,3 +32,13 @@ let width = 500,
 			streaming = true;
 		}		
 	}, false);
+
+	photoButton.addEventListener('click', function(e){
+		takePicture();
+
+		e.preventDefault()
+	}, false);
+
+	function takePicture0(){
+		console.log('pic')
+	}
