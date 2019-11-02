@@ -39,6 +39,17 @@ let width = 500,
 		e.preventDefault()
 	}, false);
 
-	function takePicture0(){
-		console.log('pic')
+	function takePicture(){
+		const context = canvas.getContext('2d');
+		if (width && height){
+			canvas.width = width;
+			canvas.height = height;
+		}
+		context.drawImage(video, 0, 0, width, height);
+		const imgURL = canvas.toDataURL('image/png');
+		const img = document.createElement('img');
+
+		img.setAttribute('src', imgURL);
+
+		photos.appendChild(img);
 	}
