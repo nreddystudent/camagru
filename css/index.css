@@ -28,6 +28,26 @@ body{
 	justify-content: center;
 	align-items: center;
 }
+	.loader.hidden{
+		animation: animate fadeOut 1s forwards;
+	}
+	.loaderwrapper.hidden{
+		animation: fadeOut 2s 
+		animte-forwards;
+	}
+@keyframes fadeOut{
+	25%{
+		opacity: 75%;
+	}
+
+	50%{
+		opacity: 50%;
+	}
+	100%{
+		opacity: 0%;
+		visibility: none;
+	}
+}
 .loader span{
 	position: absolute;
 	width: 100%;
