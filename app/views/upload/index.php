@@ -4,11 +4,12 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<link rel="stylesheet" type="text/css" href="<?=PROOT?>upload.css">
+	<link rel="stylesheet" href="<?=PROOT?>css/upload.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="<?=PROOT?>js/main.js"></script>
 </head>
 <body>
+	<section>
 	<div class="navbar">
 		<h1>Vidsnapper</h1>
 	</div>
@@ -34,5 +35,6 @@
 	<div class="bottom-container">
 		<div id="photos"></div>
 	</div>
+	</section>
 </body>
 </html>
