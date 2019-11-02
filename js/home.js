@@ -8,12 +8,10 @@ window.addEventListener('load', function(){
 function addContent(id){
     var newid = 'bgcont' + id;
     var name = document.getElementById(newid);
-        console.log(newid);
-        name.classList.add("active");
+    name.classList.add("active");
      };
 function removeContent(id){
     var newid = 'bgcont' + id;
     var name = document.getElementById(newid);
-        console.log(newid);
-        name.classList.remove("active");
+    name.classList.remove("active");
      };

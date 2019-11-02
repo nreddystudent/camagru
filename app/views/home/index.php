@@ -81,6 +81,6 @@
 		</div>
 	</div>
 	</div>
-	<script src="<?=PROOT?>js/home.js"></script>
+	<script src="<?=PROOT?>/js/home.js"></script>
 </body>
 </html>

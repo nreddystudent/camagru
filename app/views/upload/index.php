@@ -34,6 +34,6 @@
 				<div id="photos"></div>
 			</div>
 	</section>
-<script src="camagru/js/main.js"></script>
+<script src="<?=PROOT?>/js/main.js"></script>
 </body>
 </html>

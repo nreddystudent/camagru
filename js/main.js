@@ -2,7 +2,6 @@ let width = 500,
 	height = 0,
 	filter = 'none',
 	streaming = false;
-	window.onload(alert("Hello! I am an alert box!!"));
 	const video = document.getElementById('video');
 	const canvas = document.getElementById('canvas' );
 	const photos = document.getElementById('photos');
