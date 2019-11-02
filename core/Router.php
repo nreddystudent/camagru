@@ -12,13 +12,16 @@
 
 			//params
 			$queryParams = $url;
-
-			$dispatch = new $controller($controller_name, $action);
-			if (method_exists($controller, $action)){
+			
+			if (method_exists($controller, $action) && class_exists($controller_name)){
+				$dispatch = new $controller($controller_name, $action);
 				call_user_func_array([$dispatch, $action], $queryParams);
 			}
 			else{
-				die("method does not exist in controller \" $controller_name \"");
+				$viewserror = new View;
+				$viewserror->render('error/index');
+				die();
+				//die("method does not exist in controller \" $controller_name \"");
 			}
 		}
 
