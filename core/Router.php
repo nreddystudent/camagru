@@ -18,7 +18,6 @@
 			}
 			//params
 			$queryParams = $url;
-			
 			if (method_exists($controller, $action) && class_exists($controller_name)){
 				$dispatch = new $controller($controller_name, $action);
 				call_user_func_array([$dispatch, $action], $queryParams);
@@ -52,11 +51,10 @@
 			$acl = json_decode($acl_file, true); 
 			$current_user_acls = ["Guest"];
 			$grantAccess = false;
-
 			if (Session::exists(CURRENT_USER_SESSION_NAME)){
-				 $current_user_acls[] = "LoggedIn";
-				 foreach(currentUser()->acls() as $a){
-					 $current_user_acls[] = $a;
+				$current_user_acls[] = "LoggedIn";
+				foreach(currentUser()->acls() as $a){
+					$current_user_acls[] = $a;
 					} 	
 			}
 			foreach($current_user_acls as $level){
@@ -68,14 +66,14 @@
 				}
 			}
 			// check for denied
-			 foreach($current_user_acls as $level){
-				 $denied = $acl[$level]['denied'];
-				 if(!empty('denied') && array_key_exists($controller_name, $denied) && in_array($action_name, $denied[$controller_name])){
-					 $grantAccess = false;
-					 break;
-				 }
-			 }
-			 return($grantAccess);
+			foreach($current_user_acls as $level){
+				$denied = $acl[$level]['denied'];
+				if(!empty('denied') && array_key_exists($controller_name, $denied) && in_array($action_name, $denied[$controller_name])){
+					$grantAccess = false;
+					break;
+				}
+			}
+			return($grantAccess);
 		}
 	}
 ?>
