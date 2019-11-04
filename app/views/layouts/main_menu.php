@@ -12,10 +12,10 @@
 		<img src="https://img.icons8.com/android/24/000000/menu.png">
 		</div>
 		<ul id="nav">
-			<li><a href="#">Home</a></li>
-			<li><a href="#">Feed</a></li>
-			<li><a href="#">Login</a></li>
-			<li><a href="#">Logout</a></li>
+			<li><a href="<?=PROOT?>home/index">Home</a></li>
+			<li><a href="<?=PROOT?>feed/index">Feed</a></li>
+			<li><a href="<?=PROOT?>register/login">Login</a></li>
+			<li><a href="<?=PROOT?>register/logout">Logout</a></li>
 		</ul>
 	</nav>
 <script src="<?=PROOT?>js/main_menu.js"></script>
