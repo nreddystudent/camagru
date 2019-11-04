@@ -7,6 +7,9 @@
 	<link rel="stylesheet" href="<?=PROOT?>css/main_menu.css">
 </head>
 <body>
+	<?php 
+	$menu = Router::getMenu('menu_acl');dnd($menu);
+	?>
 	<nav class="navbar">
 		<div class="toggle" onclick="makeNav()">
 		<img src="https://img.icons8.com/android/24/000000/menu.png">

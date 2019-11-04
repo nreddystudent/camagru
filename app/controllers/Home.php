@@ -4,7 +4,7 @@
 			parent::__construct($controller, $action);
 		}	
 		public function indexAction(){
-			$this->view->setLayout('home');
+			// $this->view->setLayout('home');
 			$this->view->render('home/index');
 		}
 	}
