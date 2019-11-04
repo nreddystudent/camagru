@@ -7,7 +7,7 @@
 	<link rel="stylesheet" href="<?=PROOT?>css/upload.css">
 </head>
 <body>
-	<section>
+	<!-- <section>
 		<div class="navbar">
 			<h1>Vidsnapper</h1>
 		</div>
@@ -33,7 +33,7 @@
 			<div class="bottom-container">
 				<div id="photos"></div>
 			</div>
-	</section>
+	</section> -->
 <script src="<?=PROOT?>/js/main.js"></script>
 </body>
 </html>

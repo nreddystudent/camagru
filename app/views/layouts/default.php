@@ -8,6 +8,7 @@
 	<?= $this->content('head');?>
 </head>
 <body>
+	<?php include "main_menu.php"  ?>
 	<?= $this->content('body');?>
 </body>
 </html>
