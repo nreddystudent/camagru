@@ -1,9 +1,11 @@
 <?php
 	class Register extends Controller{
+		private $_db;
 		public function __construct($controller, $action){
 			parent::__construct($controller, $action);
 			$this->load_model('Users') ;
 			$this->view->setLayout('default');
+			$this->_db = DB::getInstance();
 		}
 		public function loginAction(){
 			$validation = new Validate();
@@ -21,15 +23,20 @@
 				]);
 				if ($validation->passed()){
 					$user = $this->UsersModel->findByUsername($_POST['username']);
-					 if (isset($user->password)){
-						if ($user && password_verify(Input::get('password'), $user->password)){
-							$remember = (isset($_POST['remember_me']) && Input::get('remember_me')) ? true : false;
-							$user->login($remember);
-							Router::redirect('');
+					if ($user->verified == 1){
+						if (isset($user->password)){
+							if ($user && password_verify(Input::get('password'), $user->password)){
+								$remember = (isset($_POST['remember_me']) && Input::get('remember_me')) ? true : false;
+								$user->login($remember);
+								Router::redirect('');
+							}
+						}
+						else{
+							$validation->addError("There is an error with you username or pasword.");
 						}
 					}
 					else{
-						$validation->addError("There is an error with you username or pasword.");
+						$validation->addError("Please Verify Account Or Register");
 					}
 				}
 			}
@@ -86,14 +93,41 @@
 				]);
 				if ($validation->passed()){
 					$newUser = new Users;
-					 $newUser->registerNewUser($_POST);
-					 $newUser->login();
+					$token = bin2hex(random_bytes(50));
+					 $newUser->registerNewUser($_POST, $token);
+					 $this->sendVerificationEmail($_POST['email'], $token);
 					 Router::redirect(''); 
 				}
 			}
 			$this->view->post = $posted_values;
 			$this->view->displayErrors = $validation->displayErrors();
 			$this->view->render('register/register');
+		}
+
+		function verifiedAction(){
+			$token = $_GET['token'];
+			$query = ['condtions' => "token = ?",
+			'bind'	=>  [$token]];
+			$result = $this->_db->query("SELECT * FROM users WHERE token = ?", [$token])->results();
+			if($result){
+				$this->UsersModel->update($result[0]->id, ['verified' => 1]);
+				$this->view->setLayout('home');
+				$this->view->render('verify/index');
+			}
+			else{
+				echo "not found";
+			}
+		}
+		function sendVerificationEmail($email, $token){
+			$header  = 'MIME-Version: 1.0' . "\r\n";
+			$header .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+			$header .= "From: noreply@camagru.com";
+			$message = "<html>
+						<body>
+							<a href='http://localhost:8080/camagru/register/verified?token=$token'>This Link</a>
+						</body>
+					</html>";
+			mail($email, $subject = "Verify Your Camagru Account", $message , $header);
 		}
 	}
 ?>

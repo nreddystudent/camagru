@@ -98,7 +98,7 @@
 				}
 				else{
 					if ($finalVal = self::get_link($val)){
-						$menuAry[$key] = $finalVal; 
+						$menuAry[$key] = $finalVal;
 					}
 				}
 			}

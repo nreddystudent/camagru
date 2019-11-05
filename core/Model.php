@@ -27,7 +27,7 @@
 			$results = [];
 			$resultsQuery = $this->_db->find($this->_table, $params);
 			foreach($resultsQuery as $result){
-				$obj = new $this->_modelName($this->table);
+				$obj = new $this->_modelName($this->_table);
 				$this->populateObjData($result);
 				$results[] = $obj;
 			}
@@ -50,7 +50,7 @@
 		public function save(){
 			$fields = [];
 			foreach($this->_columnNames as $column){
-				if ($column != 'creation_date')
+				if ($column != 'creation_date' && $column != 'verified')
 					$fields[$column] = $this->$column;
 			}
 			//determine whether update or insert
