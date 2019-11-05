@@ -4,6 +4,7 @@ class Restricted extends Controller{
 		parent::__construct($controller, $action);
 	}	
 	public function indexAction(){
+		$this->view->setLayout('home');
 		$this->view->render('restricted/index');
 	}
 }

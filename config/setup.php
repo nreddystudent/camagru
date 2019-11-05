@@ -24,6 +24,7 @@
             first_name VARCHAR(150) NOT NULL,
             last_name VARCHAR(100) NOT NULL,
             acl TEXT,
+            token VARCHAR(255) NOT NULL,
             creation_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
             PRIMARY KEY(id)
             );";

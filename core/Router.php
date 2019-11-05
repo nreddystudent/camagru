@@ -24,6 +24,7 @@
 			}
 			else{
 				$viewserror = new View;
+				$viewserror->setLayout('home');
 				$viewserror->render('error/index');
 				die();
 				//die("method does not exist in controller \" $controller_name \"");
@@ -91,15 +92,15 @@
 							 $sub[$k] = $finalVal;
 						 }
 					 }
-					 if(!empty($sub)){
+					if(!empty($sub)){
 						$menuAry[$key] = $sub;
-					 }
-					 else{
-						 if ($menuAry[$key] = self::get_link($val)){
-							 $menuAry[$key] = $finalVal; 
-						 }
-					 }
-				 }
+					}
+				}
+				else{
+					if ($finalVal = self::get_link($val)){
+						$menuAry[$key] = $finalVal; 
+					}
+				}
 			}
 			return $menuAry;
 		}

@@ -1,13 +1,6 @@
 {
 	"Home": "home",
-	"Tools": {
-		"My Tools": "tools",
-		"Tool 1" : "tools/first",
-		"Tool 2" : "tools/second",
-		"seperator" : "",
-		"Tool 3" : "tools/third"
-	},
-	"Google" : "https://www.google.com",
+	"Upload" : "upload",
 	"PHP Docs": "https://php.net/manaul/en",
 	"Login" : "register/login",
 	"Logout": "register/logout"

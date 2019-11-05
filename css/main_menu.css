@@ -9,6 +9,10 @@ body{
 }
 nav{
 	width: 100%;
+	position: fixed;
+	left: 0;
+	top: 0;
+	z-index: 100;
 	background:url(https://images.unsplash.com/photo-1532274402911-5a369e4c4bb5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80);
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -24,10 +28,47 @@ ul li{
 	padding: 5vh 20px;
 	cursor: pointer;
 }
+	.dropbtn {
+	background-color: #4CAF50;
+	margin: auto;
+	color: white;
+	padding: 16px;
+	font-size: 16px;
+	border: none;
+	}
+
+	.dropdown {
+	position: relative;
+	display: inline-block;
+	}
+
+	.dropdown-content {
+	display: none;
+	position: absolute;
+	background-color: #f1f1f1;
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+	z-index: 1;
+	}
+
+	.dropdown-content a {
+	color: black;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+	}
+
+	.dropdown-content a:hover {background-color: #ddd;}
+
+	.dropdown:hover .dropdown-content {display: block;}
+
+	.dropdown:hover .dropbtn {background-color: #3e8e41;}
 ul li:hover{
 	background: #e91e63;
 }
-
+#user{
+	color: #fff;
+}
 ul li a{
 	color: #fff;
 	text-decoration: none;

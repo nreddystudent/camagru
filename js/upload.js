@@ -32,13 +32,33 @@ let width = 500,
 			streaming = true;
 		}		
 	}, false);
-
+// Photo button event
 	photoButton.addEventListener('click', function(e){
 		takePicture();
 
 		e.preventDefault()
 	}, false);
 
+	//filter event
+	photoFilter.addEventListener('change', function(e){
+		//set filter to option
+		filter = e.target.value;
+		//set filter to video
+		video.style.filter = filter;
+		e.preventDefault();
+	})
+
+	//clear event
+	clearButton.addEventListener('click', function(e){
+
+		photos.innerHTML = '';
+		filter = 'none';
+		video.style.filter = filter;
+		photoFilter.selectedIndex = 0;
+
+	})
+
+//take picture from canvas
 	function takePicture(){
 		const context = canvas.getContext('2d');
 		if (width && height){
@@ -50,6 +70,8 @@ let width = 500,
 		const img = document.createElement('img');
 
 		img.setAttribute('src', imgURL);
+		//set filter
+		img.style.filter = filter;
 
 		photos.appendChild(img);
 	}
