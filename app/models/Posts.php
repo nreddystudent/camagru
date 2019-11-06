@@ -11,8 +11,7 @@ class Posts extends Model{
 	}
 
 	public function getPosts(){
-			$this->
-		return $result
+			return $this->getData();
 	}
 }
 ?>

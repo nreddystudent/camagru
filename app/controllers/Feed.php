@@ -5,8 +5,9 @@
 			$this->load_model('Posts') ;
 		}	
 		public function indexAction(){
-			$this->PostsModel->getPosts();
-			$test = "hey";
+			$results = $this->PostsModel->getPosts();
+			$_SESSION['posts'] = $results;
+			$this->view->setLayout('feed');
 			$this->view->render('feed/index');
 		}
 	}

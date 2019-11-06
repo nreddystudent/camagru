@@ -14,7 +14,7 @@
 				$allowedTypes = array('jpg','png','jpeg','gif','pdf');
 				if (in_array($file_extension, $allowedTypes)){
 					if(move_uploaded_file($_FILES["file"]["tmp_name"], $savePath)){
-						$this->PostsModel->uploadImage($file_name);
+						$this->PostsModel->uploadImage($file_name.$file_extension);
 					}
 				}
 				else{

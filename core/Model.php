@@ -116,5 +116,8 @@
 				$this->$key = $value;
 			}
 		}
+		public function getData(){
+			return $this->query("SELECT * FROM {$this->_table}")->results();
+		}
 	}
 ?>
