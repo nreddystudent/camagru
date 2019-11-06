@@ -137,6 +137,7 @@
 			$fieldString = trim($fieldString);
 			$fieldString = rtrim($fieldString, ',');
 			$sql = "UPDATE {$table} SET {$fieldString} WHERE id = {$id}";
+			var_dump($sql);
 			if (!$this->query($sql, $values)->error()){
 				return true;
 			}

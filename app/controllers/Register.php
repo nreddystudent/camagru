@@ -94,8 +94,9 @@
 				if ($validation->passed()){
 					$newUser = new Users;
 					$token = bin2hex(random_bytes(50));
+					$content = "<a href=\"http://localhost:8080/camagru/register/verified?token=$token\">This link</a>";
 					 $newUser->registerNewUser($_POST, $token);
-					 $this->sendVerificationEmail($_POST['email'], $token);
+					 $this->UsersModel->sendMail($_POST['email'],"Verify Your Camagru Account", $content);
 					 Router::redirect(''); 
 				}
 			}
@@ -106,28 +107,103 @@
 
 		function verifiedAction(){
 			$token = $_GET['token'];
-			$query = ['condtions' => "token = ?",
-			'bind'	=>  [$token]];
-			$result = $this->_db->query("SELECT * FROM users WHERE token = ?", [$token])->results();
-			if($result){
-				$this->UsersModel->update($result[0]->id, ['verified' => 1]);
-				$this->view->setLayout('home');
-				$this->view->render('verify/index');
+			$result = $this->UsersModel->findFirst(['conditions' => "token = ?", 'bind' => [$token]]);
+			if($result->email){
+				if ($result->token){
+					$this->UsersModel->update($result->id, ['verified' => 1]);
+					$this->UsersModel->update($result->id, ['token' => '']);
+					$this->view->setLayout('home');
+					$this->view->render('verify/index');
+				}
 			}
 			else{
 				echo "not found";
 			}
 		}
-		function sendVerificationEmail($email, $token){
-			$header  = 'MIME-Version: 1.0' . "\r\n";
-			$header .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-			$header .= "From: noreply@camagru.com";
-			$message = "<html>
-						<body>
-							<a href='http://localhost:8080/camagru/register/verified?token=$token'>This Link</a>
-						</body>
-					</html>";
-			mail($email, $subject = "Verify Your Camagru Account", $message , $header);
+
+		function forgotAction(){
+				$validation = new Validate;
+				$posted_values = ['email' => ''];
+				if ($_POST){
+					$posted_values = posted_values($_POST);
+					$validation->check($_POST, [
+						'email' => [
+							'display' => 'Email',
+							'required' => true,
+							'valid_email' => true,
+							'max' => 150
+						]
+					]);
+					}
+				if ($validation->passed()){
+					$result = $this->UsersModel->findFirst(['conditions' => "email = ?", 'bind' => [$posted_values['email']]]);
+					if ($result->email){
+						if ($result->token == '' && $result->verified == 1){
+							$token = bin2hex(random_bytes(50));
+							$this->UsersModel->update($result->id, ['token' => $token]);
+							$content = "<a href=\"http://localhost:8080/camagru/register/changepass?token=$token\">This link</a>";
+							$this->UsersModel->sendMail($posted_values['email'],"Change Camagru Password", $content);
+						}
+						else{
+							$validation->addError("Please verify Your account before Changing passwords");
+						}
+					}
+					else{
+						$validation->addError("This email address was not found please register");
+					}
+				}
+				$this->view->post = $posted_values;
+				$this->view->displayErrors = $validation->displayErrors();
+				$this->view->render('register/forgot');
+			}
+
+		function changepassAction(){
+			$validation = new Validate;
+			$posted_values = ['email' => '', 'password' => '', 'passwc'=> ''];
+			if ($_POST){
+				$posted_values = posted_values($_POST);
+				$validation->check($_POST, [
+					'email' => [
+						'display' => 'Email',
+						'required' => true,
+						'valid_email' => true,
+						'max' => 150
+					],
+					'password' => [
+						'display' => 'Password',
+						'required' => true,
+						'min' => 6
+					],
+					'passwc' => [
+						'display' => 'Confirm Password',
+						'required' => true,
+						'matches' => 'password'
+					]
+				]);
+				}
+			if ($validation->passed()){
+				$result = $this->UsersModel->findFirst(['conditions' => "token = ?", 'bind' => [$_GET['token']]]);
+				if ($result->token != ''){
+					if ($result->email == $posted_values['email']){
+						$newpass = password_hash($posted_values['password'], PASSWORD_DEFAULT);
+						$this->UsersModel->update($result->id, ['token' => '']);
+						$this->UsersModel->update($result->id, ['password' => $newpass]);
+						echo "password was changed";
+					}
+						
+					else{
+						$validation->addError("This email address was not found please register");
+					}
+				
+				}
+				else{
+					$validation->addError("Link is invalid please try again");
+				}
+			}
+			$this->view->post = $posted_values;
+			$this->view->displayErrors = $validation->displayErrors();
+			$this->view->render('register/changepass');
 		}
+		
 	}
 ?>

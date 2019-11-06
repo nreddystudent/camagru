@@ -31,6 +31,9 @@
 			<div class="text-right">
 				<a href="<?=PROOT?>register/register" class="text-primary">Register</a>
 			</div>
+			<div class="forgot">
+				<a href="<?=PROOT?>register/forgot" class="forgot">Forgot Passwword</a>
+			</div>
 		</form>
 	</div>
 </body>
