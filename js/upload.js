@@ -8,7 +8,6 @@ let width = 500,
 	const photoButton = document.getElementById('photo-button');
 	const clearButton = document.getElementById('clear-button');
 	const photoFilter = document.getElementById('photo-filter');
-
 	//Get media stream
 
 	navigator.mediaDevices .getUserMedia({video: true, audio:false}
@@ -68,10 +67,19 @@ let width = 500,
 		context.drawImage(video, 0, 0, width, height);
 		const imgURL = canvas.toDataURL('image/png');
 		const img = document.createElement('img');
-
 		img.setAttribute('src', imgURL);
+		//saveImage(imgURL);
 		//set filter
 		img.style.filter = filter;
 
 		photos.appendChild(img);
 	}
+	// function saveImage(img){
+	// 	console.log(img);
+	// 	var ajax = new XMLHttpRequest();
+	// 	ajax.open("POST", "http://localhost:8080/camagru/upload/index", false);
+	// 	ajax.onreadystatechange = function(){
+	// 		console.log(ajax.responseText);
+	// 	}
+	// 	ajax.send("imgData =" + img);
+	// }

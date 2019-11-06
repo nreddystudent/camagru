@@ -41,9 +41,16 @@
             PRIMARY KEY(id)
             );";
         $connection->exec($statement);
+        $statement = "CREATE TABLE `Posts` (
+            `id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+            `name` varchar(200) NOT NULL
+          ) ENGINE=InnoDB DEFAULT CHARSET=latin1;";
+        $connection->exec($statement);
     }
     catch(PDOException $e){
         echo $statement."<br>".$e->getMessage();
     } 
     $connection=NULL;
+
+    //`fullpath` longtext NOT NULL
 ?>
