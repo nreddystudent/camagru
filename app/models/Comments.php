@@ -10,6 +10,10 @@ class Comments extends Model{
 					'comment' => $comment];
 		$this->insert($fields);
 		}
+
+		public function getComments(){
+			return $this->getData();
+		}
 	}
 
 ?>

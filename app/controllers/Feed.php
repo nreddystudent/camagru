@@ -10,6 +10,8 @@
 				$this->CommentsModel->uploadComment( $_POST['post_id'],$_POST['comment']);
 			}
 			$results = $this->PostsModel->getPosts();
+			$comments = $this->CommentsModel->getComments();
+			$_SESSION['comments'] = $comments;
 			$_SESSION['posts'] = $results;
 			$this->view->render('feed/index');
 		}

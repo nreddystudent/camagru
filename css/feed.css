@@ -45,3 +45,15 @@ button{
     margin-top: 20px;
     border: none;
 }
+.likebtns:hover{
+    transform: scale(1.2);
+}
+
+.comments{
+    text-align: center;
+    color: white;
+}
+.commentbtns{
+    width: 5px;
+    height: 10px;
+}
