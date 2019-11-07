@@ -30,7 +30,7 @@
             PRIMARY KEY(id)
             );";
         $connection->exec($statement);
-         $password = password_hash("1234", PASSWORD_DEFAULT);
+        $password = password_hash("1234", PASSWORD_DEFAULT);
         $statement = "INSERT INTO users(username, email, `password`, first_name, last_name, verified)
         VALUES(\"admin\", \"nolin.reddy@gmail.com\", \"{$password}\", \"admin\", \"admin\", 1)";
         $connection->exec($statement);
@@ -48,11 +48,18 @@
             username varchar(155)
           ) ENGINE=InnoDB DEFAULT CHARSET=latin1;";
         $connection->exec($statement);
+        $statement = "CREATE TABLE comments(
+        id INT PRIMARY KEY AUTO_INCREMENT,
+        posts_id INT,
+        comment TEXT(1000),
+        FOREIGN KEY(posts_id) REFERENCES posts(id) ON DELETE CASCADE
+       );
+          ) ENGINE=InnoDB DEFAULT CHARSET=latin1;";
+        $connection->exec($statement);
     }
     catch(PDOException $e){
         echo $statement."<br>".$e->getMessage();
     } 
     $connection=NULL;
-
-    //`fullpath` longtext NOT NULL
-?>
+    
+    ?>
