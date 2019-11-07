@@ -1,14 +1,18 @@
 
 <html>
-	<?php $results = $_SESSION['posts']?>
-	<div class="photo">
-		<?php foreach ($results as $res): ?>
-		<img src="<?=ROOT."/images/". ($res->name)?>" alt="" class="photo">
-		<?php endforeach;?>
-	</div>
+	<head>
+		<link rel="stylesheet" href="<?=PROOT?>css/feed.css">
+	</head>
 	<body>
-		<img src="/goinfre/nreddy/Desktop/MAMP/apache2/htdocs/camagru/images/Screenshot.png" alt="">
-		<div class="posts">
+	<div class="container">
+		<?php $results = $_SESSION['posts']?>
+		<div class="photoscontainer">
+			<div class="photos">
+			<?php foreach ($results as $res): ?>
+			<img src="<?=PROOT."/images/". ($res->name)?>" alt="" class="photo">
+			<?php endforeach;?>
+			</div>
 		</div>
+	</div>
 	</body>
 		</html>

@@ -1,0 +1,26 @@
+.photoscontainer{
+    padding-top: 150px;
+    margin: auto;
+}
+body{
+    padding: 0;
+    margin: 0;
+    background-color: black;
+}
+.container{
+    display: flex;
+}
+
+.photo{
+    overflow: hidden;
+    transition: transform .3s ease-out;  
+    background:none;
+}
+.photo:hover{
+    background: rgba(0, 0, 0, 0.5);
+    transform: scale(1.2);
+}
+.photos{
+    display: flex;
+    flex-direction: column;
+}

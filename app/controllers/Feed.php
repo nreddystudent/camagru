@@ -7,7 +7,6 @@
 		public function indexAction(){
 			$results = $this->PostsModel->getPosts();
 			$_SESSION['posts'] = $results;
-			$this->view->setLayout('feed');
 			$this->view->render('feed/index');
 		}
 	}
