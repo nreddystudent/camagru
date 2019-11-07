@@ -4,6 +4,7 @@
 			parent::__construct($controller, $action);
 			$this->view->setLayout('default');
 			$this->load_model('Posts') ;
+			$this->load_model('Users') ;
 		}
 		public function indexAction(){
 			if(isset($_POST["submit"]) && !empty($_FILES["file"]["name"])){
@@ -14,7 +15,8 @@
 				$allowedTypes = array('jpg','png','jpeg','gif','pdf');
 				if (in_array($file_extension, $allowedTypes)){
 					if(move_uploaded_file($_FILES["file"]["tmp_name"], $savePath)){
-						$this->PostsModel->uploadImage($file_name);
+						$user = $this->UsersModel->currentLoggedInUser()->username;
+						$this->PostsModel->uploadImage($file_name, $user);
 					}
 				}
 				else{

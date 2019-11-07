@@ -30,8 +30,9 @@
             PRIMARY KEY(id)
             );";
         $connection->exec($statement);
-        $statement = 'INSERT INTO users(username, email, `password`, first_name, last_name)
-        VALUES("admin", "nolin.reddy@gmail.com", 1234, "admin", "admin")';
+         $password = password_hash("1234", PASSWORD_DEFAULT);
+        $statement = "INSERT INTO users(username, email, `password`, first_name, last_name, verified)
+        VALUES(\"admin\", \"nolin.reddy@gmail.com\", \"{$password}\", \"admin\", \"admin\", 1)";
         $connection->exec($statement);
         $statement = "CREATE TABLE user_sessions(
             id INT NOT NULL AUTO_INCREMENT,
@@ -43,7 +44,8 @@
         $connection->exec($statement);
         $statement = "CREATE TABLE `Posts` (
             `id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
-            `name` varchar(200) NOT NULL
+            `name` varchar(200) NOT NULL,
+            username varchar(155)
           ) ENGINE=InnoDB DEFAULT CHARSET=latin1;";
         $connection->exec($statement);
     }
