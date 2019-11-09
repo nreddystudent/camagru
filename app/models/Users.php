@@ -86,6 +86,8 @@
 			$header  = 'MIME-Version: 1.0' . "\r\n";
 			$header .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 			$header .= "From: noreply@camagru.com";
+			$header .= "X-Priority: 1\r\n";
+			$header .= "X-MSMail-Priority: High\r\n\r\n";
 			$message = "<html>
 						<body>
 							$content
