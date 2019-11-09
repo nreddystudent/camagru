@@ -52,7 +52,7 @@
         id INT PRIMARY KEY AUTO_INCREMENT,
         posts_id INT,
         comment TEXT(1000),
-        FOREIGN KEY(posts_id) REFERENCES posts(id) ON DELETE CASCADE
+        FOREIGN KEY(posts_id) REFERENCES posts(id) ON DELETE CASCADE 
        );
           ) ENGINE=InnoDB DEFAULT CHARSET=latin1;";
         $connection->exec($statement);
