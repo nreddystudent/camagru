@@ -7,6 +7,7 @@ body{
     animation: slide 20s infinite;
     -webkit-animation: slide 20s  infinite;
     -moz-animation: slide 20s infinite;
+    overflow: scroll;
 }
 
 h1{
