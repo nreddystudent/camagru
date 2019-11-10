@@ -7,7 +7,6 @@
 	<link rel="stylesheet" href="<?=PROOT?>css/upload.css">
 </head>
 <body>
-	<section></section>
 	<div class="container">
 		<div class="top-container">
 				<video id="video" src="">Stream not avaliable</video>
@@ -25,7 +24,7 @@
 				</select>
 				<button id="clear-button">Clear</button>
 				<canvas id="canvas"></canvas>
-				<form action="" method="POST" enctype="multipart/form-data">
+				<form class="customImage" action="" method="POST" enctype="multipart/form-data">
 					<input type="file" name="file" class="customImage">
 					<input type='submit' value='Upload' name='submit'>
 				</form>

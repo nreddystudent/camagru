@@ -25,5 +25,9 @@
 			}
 			$this->view->render('upload/index');
 		}
+
+		public function testAction(){
+			$this->view->render('upload/test');
+		}
 	}
 ?>
