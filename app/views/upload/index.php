@@ -25,8 +25,8 @@
 				<button id="clear-button">Clear</button>
 				<canvas id="canvas"></canvas>
 				<form class="customImage" action="" method="POST" enctype="multipart/form-data">
-					<input type="file" name="file" class="customImage">
-					<div class="preview" id="preview">
+					<input id="file" type="file" name="file" class="customImage">
+					<div class="preview" id="imagePreview">
 						<img src="" alt="Image Preview" class="img-preview__image">
 						<span class="image-preview__default-text">Image Preview </span>
 					</div>

@@ -1,9 +1,33 @@
+const inpfile =  document.getElementById("file");
+const previewContainer =  document.getElementById("imagePreview");
+const previewImage = previewContainer. querySelector(".img-preview__image"); 
+const previewDefaultText =  previewContainer.querySelector(".image-preview__default-text");
+
+inpfile.addEventListener("change", function(){
+	const file=this.files[0];
+	if (file){
+		const reader = new FileReader;
+		previewDefaultText.style.display = "none";
+		previewImage.style.display = "block";
+
+		reader.addEventListener("load", function(){
+			 previewImage.setAttribute("src", this.result); 
+		});
+		reader.readAsDataURL(file); 
+	}
+	else{
+		previewDefaultText.style.display = null;
+		previewImage.style.display = null;
+		previewImage.setAttribute("src", ""); 
+	}
+});
+
 let width = 500,
 	height = 0,
 	filter = 'none',
 	streaming = false;
 	const video = document.getElementById('video');
-	const canvas = document.getElementById('canvas' );
+	const canvas = document.getElementById('canvas');
 	const photos = document.getElementById('photos');
 	const photoButton = document.getElementById('photo-button');
 	const uploadButton = document.getElementById('upload-button');
