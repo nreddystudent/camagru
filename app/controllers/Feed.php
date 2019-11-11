@@ -7,7 +7,7 @@
 		}	
 		public function indexAction(){
 			if ($_POST){
-				$this->CommentsModel->uploadComment( $_POST['post_id'],$_POST['comment']);
+				$this->CommentsModel->uploadComment( $_POST['post_id'],htmlspecialchars($_POST['comment']));
 			}
 			$results = $this->PostsModel->getPosts();
 			$comments = $this->CommentsModel->getComments();

@@ -24,7 +24,7 @@
 					</form>
 					<?php foreach($comments as $comment): ?>
 					<?php if($comment->posts_id == $res->id):?>
-							<p class="comments"><?=$comment->comment?></p>
+							<p class="comments"><?=htmlspecialchars($comment->comment)?></p>
 					<?php endif;?>
 					<?php endforeach;?>
 				</div>

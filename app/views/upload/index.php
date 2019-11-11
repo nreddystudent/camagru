@@ -26,10 +26,14 @@
 				<canvas id="canvas"></canvas>
 				<form class="customImage" action="" method="POST" enctype="multipart/form-data">
 					<input type="file" name="file" class="customImage">
-					<select name="stickers" id="">
+					<div class="preview" id="preview">
+						<img src="" alt="Image Preview" class="img-preview__image">
+						<span class="image-preview__default-text">Image Preview </span>
+					</div>
+					<select name="stickers" id=""> 
 						<option value="sticker1">sticker1</option>
 					</select>
-					<input type='submit' value='Upload' name='submit'>
+					<input id="submit-button" type='submit' value='Upload' name='submit'>
 				</form>
 		</div>
 			<div class="bottom-container">
