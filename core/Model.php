@@ -116,7 +116,10 @@
 				$this->$key = $value;
 			}
 		}
-		public function getData(){
+		public function getData($user = []){
+			if ($user){
+				return $this->query("SELECT * FROM {$this->_table} WHERE username='$user'")->results();
+			}
 			return $this->query("SELECT * FROM {$this->_table}")->results();
 		}
 	}

@@ -27,6 +27,7 @@
             token VARCHAR(100) DEFAULT NULL,
             verified TINYINT NOT NULL DEFAULT 0,
             creation_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            profile_pic VARCHAR(255) DEFAULT 'Default.jpg',
             PRIMARY KEY(id)
             );";
         $connection->exec($statement);

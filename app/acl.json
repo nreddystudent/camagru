@@ -12,6 +12,7 @@
 		"Register": ["logout"],
 		"Tools": ["*"],
 		"Upload": ["*"],
-		"Feed" : ["*"]
+		"Feed" : ["*"],
+		"Profile": ["*"]
 	}
 }

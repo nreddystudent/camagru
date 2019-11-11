@@ -1,0 +1,25 @@
+body{
+	margin: 0;
+	padding: 0;
+	background: #313131;
+}
+
+.gallery{
+	padding-top: 150px;
+	display: flex;
+	margin: auto;
+	justify-content: space-between;
+}
+.gallery img{
+	margin: auto;
+	width: 15vw;
+	height: auto;
+}
+.left-bar{
+	padding-top: 150px;
+	display: flex;
+	flex-direction: column;
+}
+.container{
+	display: flex;
+}
