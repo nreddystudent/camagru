@@ -68,20 +68,19 @@ let width = 500,
 		const imgURL = canvas.toDataURL('image/png');
 		const img = document.createElement('img');
 		img.setAttribute('src', imgURL);
-		saveImage(imgURL);
+		saveImage(imgURL, filter);
 		//set filter
 
 		img.style.filter = filter;
 
 		photos.appendChild(img);
 	}
-	function saveImage(imgURL){
+	function saveImage(imgURL, filter){
 		var ajax = new XMLHttpRequest();
 		ajax.open("POST", "http://localhost:8080/camagru/upload", true);
 		ajax.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 		ajax.onload = function(){
-			alert("here");
 			console.log(ajax.responseText);
 		}
-		ajax.send("imgData="+imgURL);
+		ajax.send("imgData="+imgURL+"&filter="+filter);
 	}

@@ -9,12 +9,25 @@
 
 		public function indexAction(){
 			if (isset($_POST['imgData'])){
+				$filter = $_POST['filter'];
+				var_dump($filter);
 				$data = $_POST['imgData'];
 				$data = str_replace('data:image/png;base64,', '', $data);
 				$data = str_replace(' ', '+', $data);
 				$data = base64_decode($data);
 				$image = imagecreatefromstring($data);
-				imagefilter($image, IMG_FILTER_NEGATE);
+				if ($filter == 'invert(100%)'){
+					imagefilter($image, IMG_FILTER_NEGATE);
+				}
+				else if ($filter == 'grayscale(100%)'){
+					imagefilter($image, IMG_FILTER_GRAYSCALE);
+				}
+				else if ($filter == 'contrast(200%)'){
+					imagefilter($image, IMG_FILTER_CONTRAST, -50);
+				}
+				else if ($filter == 'blur(10px)'){
+					imagefilter($image, IMG_FILTER_SELECTIVE_BLUR);
+				}
 				$user = $this->UsersModel->currentLoggedInUser()->username;				
 				$file_name = time().rand().".jpg";
 				imagejpeg($image, ROOT."/images/". $file_name);
