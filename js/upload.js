@@ -88,6 +88,7 @@ let width = 500,
 			canvas.width = width;
 			canvas.height = height;
 		}
+		context.setTransform(-1,0,0,1,canvas.width,0);
 		context.drawImage(video, 0, 0, width, height);
 		const imgURL = canvas.toDataURL('image/png');
 		const img = document.createElement('img');
