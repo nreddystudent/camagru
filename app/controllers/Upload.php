@@ -6,12 +6,16 @@
 			$this->load_model('Posts') ;
 			$this->load_model('Users') ;
 		}
+
 		public function indexAction(){
 			if(isset($_POST["submit"]) && !empty($_FILES["file"]["name"])){
 				$targetDir = ROOT."/images/";
 				$file_name = basename($_FILES["file"]["name"]);
 				$savePath = $targetDir.$file_name;
 				$file_extension = pathinfo($savePath, PATHINFO_EXTENSION);
+				$file_name = time().rand().".$file_extension";
+				$savePath = $targetDir.$file_name;
+			
 				$allowedTypes = array('jpg','png','jpeg','gif','pdf');
 				if (in_array($file_extension, $allowedTypes)){
 					if(move_uploaded_file($_FILES["file"]["tmp_name"], $savePath)){
@@ -21,6 +25,9 @@
 				}
 				else{
 					echo "wrong file type";
+				}	
+				if (isset($_POST['stickers'])){
+					
 				}
 			}
 			$this->view->render('upload/index');

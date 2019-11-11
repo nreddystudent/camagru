@@ -15,7 +15,7 @@
 				</button>
 				<select id="photo-filter">
 					<option value="none">Normal</option>
-					<option value="greyscale(100%)">Greyscale</option>
+					<option value="grayscale(100%)">Grayscale</option>
 					<option value ="sepia(100%)">Sepia</option>
 					<option value="invert(100%)">Invert</option>
 					<option value="hue-rotate(90deg)">Hue</option>
@@ -26,6 +26,9 @@
 				<canvas id="canvas"></canvas>
 				<form class="customImage" action="" method="POST" enctype="multipart/form-data">
 					<input type="file" name="file" class="customImage">
+					<select name="stickers" id="">
+						<option value="sticker1">sticker1</option>
+					</select>
 					<input type='submit' value='Upload' name='submit'>
 				</form>
 		</div>

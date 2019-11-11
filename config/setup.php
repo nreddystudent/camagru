@@ -5,7 +5,7 @@
         $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $statement = "DROP DATABASE IF EXISTS $DB_NAME";
         $connection->exec($statement);
-        $statement = "CREATE DATABASE $DB_NAME";
+        $statement = "CREATE DATABASE $DB_NAME DEFAULT CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci;";
         $connection->exec($statement);
         echo "done";
     }
@@ -53,8 +53,7 @@
         posts_id INT,
         comment TEXT(1000),
         FOREIGN KEY(posts_id) REFERENCES posts(id) ON DELETE CASCADE 
-       );
-          ) ENGINE=InnoDB DEFAULT CHARSET=latin1;";
+       )DEFAULT CHARSET=utf8mb4 COLLATE utf8mb4_general_ci ENGINE=InnoDB;";
         $connection->exec($statement);
     }
     catch(PDOException $e){

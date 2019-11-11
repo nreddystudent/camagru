@@ -49,7 +49,6 @@ let width = 500,
 
 	//clear event
 	clearButton.addEventListener('click', function(e){
-
 		photos.innerHTML = '';
 		filter = 'none';
 		video.style.filter = filter;
@@ -67,9 +66,13 @@ let width = 500,
 		context.drawImage(video, 0, 0, width, height);
 		const imgURL = canvas.toDataURL('image/png');
 		const img = document.createElement('img');
+		var xhttp = new XMLHttpRequest();
+		xhttp.open("POST", "/camagru/app/controllers/Upload.php", true);
+		xhttp.send();
 		img.setAttribute('src', imgURL);
 		//saveImage(imgURL);
 		//set filter
+
 		img.style.filter = filter;
 
 		photos.appendChild(img);
