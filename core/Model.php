@@ -50,7 +50,7 @@
 		public function save(){
 			$fields = [];
 			foreach($this->_columnNames as $column){
-				if ($column != 'creation_date' && $column != 'verified')
+				if ($column != 'creation_date' && $column != 'verified' && $column  != 'profile_pic')
 					$fields[$column] = $this->$column;
 			}
 			//determine whether update or insert
@@ -118,7 +118,7 @@
 		}
 		public function getData($user = []){
 			if ($user){
-				return $this->query("SELECT * FROM {$this->_table} WHERE username='$user'")->results();
+				return $this->query("SELECT * FROM {$this->_table} WHERE id='$user'")->results();
 			}
 			return $this->query("SELECT * FROM {$this->_table}")->results();
 		}

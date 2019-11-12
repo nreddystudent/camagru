@@ -5,9 +5,9 @@ class Posts extends Model{
 			parent::__construct($table);
 		}
 
-	public function uploadImage($name, $username){
+	public function uploadImage($name, $userid){
 		$fields = ['name' => $name,
-					'username' => $username];
+					'userid' => $userid];
 		$this->insert($fields);
 	}
 

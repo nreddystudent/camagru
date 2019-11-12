@@ -5,9 +5,10 @@ class Comments extends Model{
 			parent::__construct($table);
 		}
 
-		public function uploadComment($posts_id, $comment){
+		public function uploadComment($posts_id, $comment, $userid){
 			$fields = ['posts_id' => $posts_id,
-					'comment' => $comment];
+					'comment' => $comment,
+					'userid' => $userid];
 		$this->insert($fields);
 		}
 

@@ -4,11 +4,13 @@
 			parent::__construct($controller, $action);
 			$this->load_model('Posts') ;
 			$this->load_model('Comments') ;
+			$this->load_model('Users') ;
 		}	
 		public function indexAction(){
 			if ($_POST){
-				$this->CommentsModel->uploadComment( $_POST['post_id'],htmlspecialchars($_POST['comment']));
+				$this->CommentsModel->uploadComment( $_POST['post_id'],htmlspecialchars($_POST['comment']), $this->UsersModel->currentLoggedInUser()->id);
 			}
+			$_SESSION['profilepics'] = $this->UsersModel->getData();
 			$results = $this->PostsModel->getPosts();
 			$comments = $this->CommentsModel->getComments();
 			$_SESSION['comments'] = $comments;

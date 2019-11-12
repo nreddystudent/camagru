@@ -56,6 +56,7 @@ button{
 .comments{
     text-align: center;
     color: white;
+    margin-left: 2vw;
 }
 .postbtns{
     background: none;
@@ -80,4 +81,26 @@ button{
   .likebtns svg{
       height: inherit;
       width: inherit;
+  }
+
+img.profilepics{
+      width: 2vw;
+      height: 2vw;
+      border-radius: 50%;
+      overflow: hidden;
+  }
+
+  .commentcontainer{
+      display: flex;
+      /* justify-content: space-between; */
+  }
+
+  .comment{
+        margin: auto;
+  }
+  .comment_user a{
+    text-decoration: none;   
+    color: white;
+    position: relative;
+    margin-bottom: 500px;
   }

@@ -10,7 +10,6 @@
 		public function indexAction(){
 			if (isset($_POST['imgData'])){
 				$filter = $_POST['filter'];
-				var_dump($filter);
 				$data = $_POST['imgData'];
 				$data = str_replace('data:image/png;base64,', '', $data);
 				$data = str_replace(' ', '+', $data);
@@ -32,7 +31,7 @@
 					imagefilter($image, IMG_FILTER_GRAYSCALE);
 					imagefilter($image, IMG_FILTER_COLORIZE, 100, 50, 0);
 				}
-				$user = $this->UsersModel->currentLoggedInUser()->username;				
+				$user = $this->UsersModel->currentLoggedInUser()->id;				
 				$file_name = time().rand().".jpg";
 				imagejpeg($image, ROOT."/images/". $file_name);
 				$this->PostsModel->uploadImage($file_name, $user);
@@ -47,7 +46,7 @@
 				$allowedTypes = array('jpg','png','jpeg','gif','pdf');
 				if (in_array($file_extension, $allowedTypes)){
 					if(move_uploaded_file($_FILES["file"]["tmp_name"], $savePath)){
-						$user = $this->UsersModel->currentLoggedInUser()->username;
+						$user = $this->UsersModel->currentLoggedInUser()->id;
 						$this->PostsModel->uploadImage($file_name, $user);
 					}
 				}
@@ -58,7 +57,7 @@
 					
 				}
 			}
-			$this->view->render('upload/index');
+				$this->view->render('upload/index');
 		}
 
 		public function testAction(){

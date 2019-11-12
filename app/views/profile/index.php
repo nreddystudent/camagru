@@ -3,16 +3,32 @@
 </head>
 <body>
 	<?php $posts = $_SESSION['userPosts']?>
-	<?php var_dump($posts);?>
-	<div class="container">
 		<div class="left-bar">
-			<img src="<?=PROOT?>/profilePics/<?=$_SESSION['profile_pic']?>" alt="" class="profile-pic">
-			<button>Settings</button>
+			<div class="bg-danger">
+				<?=$this->displayErrors ;?>
+			</div>
+			<div class="profile-pic">
+				<img src="<?=PROOT?>/profilePics/<?=$_SESSION['profile_pic']?>" alt="">
+			</div>
+			<?php if($_SESSION['is_owner'] == 1): ?>
+				<button id="settings">Settings</button>
+				<form class="customImage settings_dropdown" action="" method="POST" enctype="multipart/form-data">
+					<input type="text" name="username" placeholder="Username" class="form-control">
+					<input type="password" placeholder="password" name="password">
+					<input type="email" name="email"  placeholder="email" class="form-control">
+					<input id="file" type="file" name="file" class="customImage">
+					<div class="preview" id="imagePreview">
+						<img src="" alt="Image Preview" class="img-preview__image">
+						<span class="image-preview__default-text">Image Preview </span>
+					</div>
+					<button name="submit" type="submit">Change Settings</button>
+				</form>
+			<?php endif;?>
 		</div>
 		<div class="gallery">
 			<?php foreach($posts as $image):?>
 				<img src="<?=PROOT?>/images/<?=$image->name?>" alt="">
 			<?php endforeach;?>
 		</div>
-	</div>
+	<script src="<?=PROOT?>js/profile.js"></script>
 </body>
