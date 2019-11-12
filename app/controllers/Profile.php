@@ -40,7 +40,6 @@
 						],
 						'email' => [
 							'display' => 'Email',
-							'required' => true,
 							'unique' => 'users',
 							'valid_email' => true,
 							'max' => 150
