@@ -130,7 +130,6 @@
 		public function update($table, $id, $fields = []){
 			$fieldString = '';
 			$values = [];
-			dnd($fields);
 			foreach($fields as $field => $value){
 				$fieldString .= " " . $field . ' = ?,';
 				$values[] = $value;

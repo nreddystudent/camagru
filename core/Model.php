@@ -118,7 +118,7 @@
 		}
 		public function getData($user = []){
 			if ($user){
-				return $this->query("SELECT * FROM {$this->_table} WHERE id='$user'")->results();
+				return $this->query("SELECT * FROM {$this->_table} WHERE userid='$user'")->results();
 			}
 			return $this->query("SELECT * FROM {$this->_table}")->results();
 		}

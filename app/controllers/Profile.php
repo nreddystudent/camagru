@@ -7,15 +7,26 @@
 		}
 		
 		public function indexAction($user = []){		
-			if ($user && $user != $this->UsersModel->currentLoggedInUser()->username){
+			if ($user && $user != $this->UsersModel->currentLoggedInUser()->id){
 			$_SESSION['userPosts'] = $this->PostsModel->getUserPosts($user);
-			$_SESSION['profile_pic'] = $this->UsersModel->findByUsername($user)->profile_pic;
+			$users = $this->UsersModel->getData();
+			foreach($users as $value){
+				if ($value->id == $users){
+					$_SESSION['profile_pic'] = $value;
+				}
+			}
 			$_SESSION['is_owner'] = 0;
 		}
 		else{
 			$_SESSION['is_owner'] = 1;
-			$_SESSION['userPosts'] = $this->PostsModel->getUserPosts($this->UsersModel->currentLoggedInUser()->userid);
-			$_SESSION['profile_pic'] = $this->UsersModel->currentLoggedInUser()->profile_pic;
+			$_SESSION['userPosts'] = $this->PostsModel->getUserPosts($this->UsersModel->currentLoggedInUser()->id);
+			$id = $this->UsersModel->currentLoggedInUser()->id;
+			$users = $this->UsersModel->getData();
+			foreach($users as $value){
+				if ($value->id == $id){
+					$_SESSION['profile_pic'] = $value->profile_pic;
+				}
+			}
 		}
 			$validation = new Validate();
 			if($_POST || !empty($_FILES["file"]["name"])){
