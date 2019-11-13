@@ -29,13 +29,14 @@ body{
     display: flex;
     flex-direction: column;
     margin: auto;
-    width: 20vw;
+    width: 21vw;
 }
 .post{
-    background:rgba(0, 0, 0, 0.4);
+    /* background:rgba(0, 0, 0, 0.4); */
     border-radius: 30px;
     padding:20px ;
     margin-top: 30px;
+    width: 21vw;
 }
 .user{
     text-align: center;
@@ -50,7 +51,11 @@ button{
     border: none;
 }
 .icons{
+    width: 100%;
+    height: 6vh;
     transition: transform .2s linear;
+    display: flex;
+    background-color: black;
 }
 .icons:hover{
     transform: scale(1.2);
@@ -62,11 +67,9 @@ button{
     margin-left: 2vw;
 }
 .postbtns{
+    width: 1vw;
+    height: 1vh;
     background: none;
-}
-.icons{
-    width: 5vw;
-    height: 3vw;
 }
 .icons .svg-icon{
     width: inherit;
@@ -95,6 +98,7 @@ img.profilepics{
 
   .commentcontainer{
       display: flex;
+      background-color: black;
       /* justify-content: space-between; */
   }
 
@@ -113,10 +117,17 @@ img.profilepics{
       padding-bottom: 1vh;
       background-color: black;
       width: 100%;
-  }
-  .header img{
-    width: 3vw;
-    height: 3vw;
-    border-radius: 50%;
-    overflow: hidden;
+      border-top-left-radius: 15px;
+      border-top-right-radius: 15px;
+    }
+    .header img{
+        width: 3vw;
+        height: 3vw;
+        border-radius: 50%;
+        overflow: hidden;
+    }
+    form{
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    background-color: black;
 }
