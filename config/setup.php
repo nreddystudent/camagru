@@ -58,6 +58,13 @@
         FOREIGN KEY(posts_id) REFERENCES posts(id) ON DELETE CASCADE 
        )DEFAULT CHARSET=utf8mb4 COLLATE utf8mb4_general_ci ENGINE=InnoDB;";
         $connection->exec($statement);
+        $statement = "CREATE TABLE likes(
+        id INT PRIMARY KEY AUTO_INCREMENT,
+        posts_id INT,
+        userid INT,
+        FOREIGN KEY(posts_id) REFERENCES posts(id) ON DELETE CASCADE 
+       )DEFAULT CHARSET=utf8mb4 COLLATE utf8mb4_general_ci ENGINE=InnoDB;";
+        $connection->exec($statement);
     }
     catch(PDOException $e){
         echo $statement."<br>".$e->getMessage();

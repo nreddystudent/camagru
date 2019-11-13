@@ -5,10 +5,16 @@
 			$this->load_model('Posts') ;
 			$this->load_model('Comments') ;
 			$this->load_model('Users') ;
+			$this->load_model('Likes') ;
 		}	
 		public function indexAction(){
 			if ($_POST){
-				$this->CommentsModel->uploadComment( $_POST['post_id'],htmlspecialchars($_POST['comment']), $this->UsersModel->currentLoggedInUser()->id);
+				if ($_POST['likeData']){
+					$this->LikesModel->uploadLike($_POST['likeData'], $this->UsersModel->currentLoggedInUser()->id);
+				}
+				else{
+					$this->CommentsModel->uploadComment( $_POST['post_id'],htmlspecialchars($_POST['comment']), $this->UsersModel->currentLoggedInUser()->id);
+				}
 			}
 			$_SESSION['profilepics'] = $this->UsersModel->getData();
 			$results = $this->PostsModel->getPosts();

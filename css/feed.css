@@ -53,12 +53,8 @@ button{
 .icons{
     width: 100%;
     height: 6vh;
-    transition: transform .2s linear;
     display: flex;
     background-color: black;
-}
-.icons:hover{
-    transform: scale(1.2);
 }
 
 .comments{
@@ -85,8 +81,8 @@ button{
     stroke-width: .5;
   }
   .likebtns svg{
-      height: inherit;
-      width: inherit;
+     width: 2vw;
+     height: 4vh;
   }
 
 img.profilepics{
