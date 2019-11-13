@@ -54,7 +54,7 @@
 									$this->UsersModel->update($this->UsersModel->currentLoggedInUser()->id, ["username" => $_POST["username"]]);
 								if ($_POST["password"]){
 									$passwordnew = password_hash($_POST["password"], PASSWORD_DEFAULT);
-									$this->UsersModel->update($this->UsersModel->currentLoggedInUser()->id, $passwordnew);
+									$this->UsersModel->update($this->UsersModel->currentLoggedInUser()->id, ["password" => $passwordnew]);
 								}
 								if ($_POST["email"])
 								$this->UsersModel->update($this->UsersModel->currentLoggedInUser()->id, ["email" => $_POST["email"]]);

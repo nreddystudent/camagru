@@ -15,7 +15,10 @@
 				<div class="post">
 					<?php foreach ($_SESSION['profilepics'] as $user):?>
 						<?php if ($user->id == $res->userid):?>
-							<h1 class="user"><?=$user->username?></h1>
+							<div class="header">
+								<img class="postprofile" src="<?=PROOT?>/profilePics/<?=$user->profile_pic?>">							
+								<h1 class="user"><?=$user->username?></h1>
+							</div>
 						<?php endif;?>
 					<?php endforeach;?>
 					<img src="<?=PROOT."/images/". ($res->name)?>" alt="" class="photo">

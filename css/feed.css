@@ -40,6 +40,9 @@ body{
 .user{
     text-align: center;
     color: white;
+    margin: auto; 
+    margin-left: 1vw;
+    font-size: 1em;
 }
 button{
     background: none;
@@ -104,3 +107,16 @@ img.profilepics{
     position: relative;
     margin-bottom: 500px;
   }
+
+  .header{
+      display: flex;
+      padding-bottom: 1vh;
+      background-color: black;
+      width: 100%;
+  }
+  .header img{
+    width: 3vw;
+    height: 3vw;
+    border-radius: 50%;
+    overflow: hidden;
+}
