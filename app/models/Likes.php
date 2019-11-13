@@ -5,9 +5,13 @@ class Likes extends Model{
 			parent::__construct($table);
 	}
 	public function uploadLike($posts_id, $userid){
-		$fields = ['posts_id' => $posts_id,
-				'userid' => $userid];
-		$this->insert($fields);
+		if (!$this->find(['conditions' => ['posts_id'=> $posts_id, 'userid' => $userid]])){
+			$fields = ['posts_id' => $posts_id,
+					'userid' => $userid];
+			$this->insert($fields);
+			return(1);
+		}
+		return(0);
 	}
 }
 ?>

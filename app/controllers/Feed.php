@@ -10,7 +10,9 @@
 		public function indexAction(){
 			if ($_POST){
 				if ($_POST['likeData']){
-					$this->LikesModel->uploadLike($_POST['likeData'], $this->UsersModel->currentLoggedInUser()->id);
+					if ($this->LikesModel->uploadLike($_POST['likeData'], $this->UsersModel->currentLoggedInUser()->id)){
+						$this->PostsModel->update($_POST['likeData'], ['likes' => 'likes+1']);
+					}
 				}
 				else{
 					$this->CommentsModel->uploadComment( $_POST['post_id'],htmlspecialchars($_POST['comment']), $this->UsersModel->currentLoggedInUser()->id);

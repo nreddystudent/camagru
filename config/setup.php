@@ -47,6 +47,7 @@
             `id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
             `name` varchar(200) NOT NULL,
             userid INT,
+            likes INT DEFAULT 0,
             FOREIGN KEY(userid) REFERENCES users(id) ON DELETE CASCADE 
           ) ENGINE=InnoDB DEFAULT CHARSET=latin1;";
         $connection->exec($statement);
