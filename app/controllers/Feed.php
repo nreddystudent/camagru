@@ -10,11 +10,15 @@
 		public function indexAction(){
 			if ($_POST){
 				if ($_POST['likeData']){
+					$id = $_POST['likeData'];
+					$params['conditions'] = "id=$id";
+					$likes = $this->PostsModel->findFirst($params)->likes;
 					if ($this->LikesModel->uploadLike($_POST['likeData'], $this->UsersModel->currentLoggedInUser()->id)){
-						$likes = $this->PostsModel->find(['conditions'][ 'id' => $_POST['likeData']]);
-						dnd($likes);
-						$this->PostsModel->update($_POST['likeData'], ['likes' => $likes+1]);
+						$likes+=1;
+						$this->PostsModel->update($id, ['likes' => $likes]);
 					}
+					echo $likes;
+					die;
 				}
 				else{
 					$this->CommentsModel->uploadComment( $_POST['post_id'],htmlspecialchars($_POST['comment']), $this->UsersModel->currentLoggedInUser()->id);

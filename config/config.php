@@ -7,7 +7,7 @@
 	define('PROOT', '/camagru/'); // '/' for live server
 	define('DB_NAME', 'myshit');
 	define('DB_USER', 'root');
-	define('DB_PASSWORD', 'ichigo0808');
+	define('DB_PASSWORD', '123456');
 	define('DB_HOST', 'localhost'); //use ip adress to avoid DNS lookup
 
 
