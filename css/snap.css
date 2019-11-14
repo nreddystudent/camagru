@@ -1,0 +1,49 @@
+#canvas{
+    display: none;
+}
+.top-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+#photo-button, #clear-button, #photo-filter, .customImage{
+    margin: auto;
+    color:black;
+}
+.display{
+	padding-top: 150px;
+    padding-bottom: 50px;
+	margin: auto;
+	width: 25vw;
+	position: relative;
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+}
+#stickercanvas{
+	width: 100%;
+    position: absolute;
+    height: -webkit-fill-available;
+    top: 0;
+    margin: auto;
+    left: 0;
+}
+video{
+	width: 100%;
+    position: absolute;
+    height: -webkit-fill-available;
+    top: 0;
+    margin: auto;
+    left: 0;
+}
+.stickers{
+	overflow: scroll;
+    background: white;
+	margin: auto;
+	display: flex;
+    width: 46vw;
+    height: 12vh;
+}
+.stickers img{
+	object-fit: contain;
+	/* margin: auto; */
+}

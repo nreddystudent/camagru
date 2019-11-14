@@ -8,6 +8,11 @@
 		}
 
 		public function indexAction(){
+				$this->view->render('upload/index');
+			}
+
+
+		public function snapAction(){
 			if (isset($_POST['imgData'])){
 				$filter = $_POST['filter'];
 				$data = $_POST['imgData'];
@@ -36,6 +41,10 @@
 				imagejpeg($image, ROOT."/images/". $file_name);
 				$this->PostsModel->uploadImage($file_name, $user);
 			}
+			$this->view->render('upload/snap');
+		}
+
+		public function uploadAction(){
 			if(isset($_POST["submit"]) && !empty($_FILES["file"]["name"])){
 				$targetDir = ROOT."/images/";
 				$file_name = basename($_FILES["file"]["name"]);
@@ -53,15 +62,13 @@
 				else{
 					echo "wrong file type";
 				}	
-				if (isset($_POST['stickers'])){
-					
-				}
 			}
-				$this->view->render('upload/index');
-		}
-
-		public function testAction(){
-			$this->view->render('upload/test');
-		}
+			$this->view->render('upload/upload');
 	}
+
+	public function editAction(){
+		$this->view->render('upload/edit');
+
+	}
+}
 ?>
