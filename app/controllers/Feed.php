@@ -11,7 +11,9 @@
 			if ($_POST){
 				if ($_POST['likeData']){
 					if ($this->LikesModel->uploadLike($_POST['likeData'], $this->UsersModel->currentLoggedInUser()->id)){
-						$this->PostsModel->update($_POST['likeData'], ['likes' => 'likes+1']);
+						$likes = $this->PostsModel->find(['conditions'][ 'id' => $_POST['likeData']]);
+						dnd($likes);
+						$this->PostsModel->update($_POST['likeData'], ['likes' => $likes+1]);
 					}
 				}
 				else{
