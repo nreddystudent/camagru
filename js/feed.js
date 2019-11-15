@@ -1,4 +1,4 @@
-function likeme(likeid, postid, counter){
+function likeme(likeid, postid, counter, userid){
     let likebtn = document.getElementById(likeid);
         ajax = new XMLHttpRequest;
         ajax.open("POST", "/camagru/feed", true);
@@ -6,7 +6,7 @@ function likeme(likeid, postid, counter){
         ajax.onload = function(){
 			document.getElementById(counter).innerHTML = ajax.responseText;
 		}
-		ajax.send("likeData="+postid);
+		ajax.send("likeData="+postid+"&likeUID="+userid);
         if (likebtn.children[0].style.fill != 'red')
         likebtn.children[0].style.fill = 'red';
     else{
