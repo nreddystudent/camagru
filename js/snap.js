@@ -28,7 +28,7 @@ let width = 500,
 			video.setAttribute('height', height);
 			canvas.setAttribute('width', width);
 			canvas.setAttribute('height', height);
-		
+			resizecanvas(video);
 			streaming = true;
 		}		
 	}, false);
@@ -92,3 +92,11 @@ let width = 500,
 		context.drawImage(sticker, 10, 10);
 		console.log(stickercanvas);
 	});
+
+	function resizecanvas(size){
+		console.log(size.offsetWidth);
+		let w = size.offsetWidth;
+		let h = size.offsetHeight;
+		stickercanvas.width = w;
+		stickercanvas.height = h;
+	}

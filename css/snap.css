@@ -20,9 +20,7 @@
     transform: scaleX(-1);
 }
 #stickercanvas{
-	width: 100%;
     position: absolute;
-    height: -webkit-fill-available;
     top: 0;
     margin: auto;
     left: 0;
@@ -30,11 +28,10 @@
 video{
 	width: 100%;
     position: absolute;
-    height: -webkit-fill-available;
     top: 0;
     margin: auto;
     left: 0;
-}
+} 
 .stickers{
 	overflow: scroll;
     background: white;
