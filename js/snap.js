@@ -49,9 +49,11 @@ let width = 500,
 
 	//clear event
 	clearButton.addEventListener('click', function(e){
+		content = stickercanvas.getContext('2d');
 		photos.innerHTML = '';
 		filter = 'none';
 		video.style.filter = filter;
+		content.clearRect(0, 0, stickercanvas.width, stickercanvas.height);
 		photoFilter.selectedIndex = 0;
 
 	})
@@ -66,35 +68,33 @@ let width = 500,
 		context.setTransform(-1,0,0,1,canvas.width,0);
 		context.drawImage(video, 0, 0, width, height);
 		const imgURL = canvas.toDataURL('image/png');
+		const stickerURL = stickercanvas.toDataURL('image/png')
 		const img = document.createElement('img');
 		img.setAttribute('src', imgURL);
-		saveImage(imgURL, filter);
+		saveImage(imgURL, filter, stickerURL);
 		//set filter
-
 		img.style.filter = filter;
 
 		photos.appendChild(img);
 	}
-	function saveImage(imgURL, filter){
-		console.log(filter);
+	function saveImage(imgURL, filter, stickerURL){
 		var ajax = new XMLHttpRequest();
 		ajax.open("POST", "http://localhost:8080/camagru/upload/snap", true);
 		ajax.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 		ajax.onload = function(){
 			console.log(ajax.responseText);
 		}
-		ajax.send("imgData="+imgURL+"&filter="+filter);
+		ajax.send("imgData="+imgURL+"&filter="+filter+"&stickerData="+stickerURL);
 	}
 
-	document.getElementById("sticker1").addEventListener('click', function(){
+	function putSticker(sticker){
 		var context = stickercanvas.getContext("2d");
-		var sticker = document.getElementById("sticker1");
-		context.drawImage(sticker, 10, 10);
+		console.log(stickercanvas.height);
+		context.drawImage(sticker, sticker.width/2, sticker.height/2, stickercanvas.width*4, stickercanvas.height*4, sticker.width/2, sticker.height/2, stickercanvas.width, stickercanvas.height);
 		console.log(stickercanvas);
-	});
+	};
 
 	function resizecanvas(size){
-		console.log(size.offsetWidth);
 		let w = size.offsetWidth;
 		let h = size.offsetHeight;
 		stickercanvas.width = w;

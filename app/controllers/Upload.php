@@ -36,14 +36,24 @@
 					imagefilter($image, IMG_FILTER_GRAYSCALE);
 					imagefilter($image, IMG_FILTER_COLORIZE, 100, 50, 0);
 				}
+				$sticker = $_POST['stickerData'];
+				$sticker = str_replace('data:image/png;base64,', '', $sticker);
+				$sticker = str_replace(' ', '+', $sticker);
+				$sticker = base64_decode($sticker);
+				$sticker = imagecreatefromstring($sticker);
 				$user = $this->UsersModel->currentLoggedInUser()->id;				
 				$file_name = time().rand().".jpg";
+				imagealphablending($image);
+				imagesavealpha($image);
+				$x = imagesx($image);
+				$y = imagesy($image);
+				imagecopy($image, $sticker, 0, 0, 0, 0, $x, $y);
 				imagejpeg($image, ROOT."/images/". $file_name);
 				$this->PostsModel->uploadImage($file_name, $user);
 			}
 			$this->view->render('upload/snap');
 		}
-
+		
 		public function uploadAction(){
 			if(isset($_POST["submit"]) && !empty($_FILES["file"]["name"])){
 				$targetDir = ROOT."/images/";

@@ -10,10 +10,10 @@
 				<canvas id="stickercanvas"></canvas>
 			</div>
 			<div class="stickers">
-				<img id="sticker1" src="<?=PROOT?>/stickers/sticker1.jpg" alt="">
-				<img id = "sticker2"src="<?=PROOT?>/stickers/sticker2.jpg" alt="">
-				<img src="<?=PROOT?>/stickers/sticker3.jpg" alt="">
-				<img src="<?=PROOT?>/stickers/sticker4.jpg" alt="">
+				<img onclick="putSticker(this)" id="sticker1" src="<?=PROOT?>/stickers/sticker1.png" alt="">
+				<img onclick="putSticker(this)" id = "sticker2"src="<?=PROOT?>/stickers/sticker2.png" alt="">
+				<img onclick="putSticker(this)" src="<?=PROOT?>/stickers/sticker3.png" alt="">
+				<img onclick="putSticker(this)" src="<?=PROOT?>/stickers/sticker4.png" alt="">
 			</div>
 			<button id="photo-button" class="btn btn-dark">
 				Take photo
@@ -32,5 +32,5 @@
 			<div id="photos"></div>
 		</div>
 	</div>
-	<script src="<?=PROOT?>/js/snap.js"></script>
+	<script src="<?=PROOT?>/js/snap.js?ver=<?php echo time();?>"></script>
 </body>

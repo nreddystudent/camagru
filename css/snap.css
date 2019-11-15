@@ -21,13 +21,11 @@
 }
 #stickercanvas{
     position: absolute;
-    top: 0;
     margin: auto;
     left: 0;
 }
 video{
 	width: 100%;
-    position: absolute;
     top: 0;
     margin: auto;
     left: 0;
