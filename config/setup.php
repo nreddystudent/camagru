@@ -27,6 +27,7 @@
             token VARCHAR(100) DEFAULT NULL,
             verified TINYINT NOT NULL DEFAULT 0,
             creation_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            notifications TINYINT NOT NULL DEFAULT 1,
             profile_pic VARCHAR(255) NOT NULL DEFAULT 'Default.jpeg',
             PRIMARY KEY(id)
             );";

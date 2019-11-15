@@ -16,6 +16,35 @@
 					<input type="text" name="username" placeholder="Username" class="form-control">
 					<input type="password" placeholder="password" name="password">
 					<input type="email" name="email"  placeholder="email" class="form-control">
+					<?php if($this->pref == 1):?>
+						<div class="notificationsContainer">
+							<p>Notifications</p>
+							<div class="switches">
+								<label>On
+								<input type="radio" checked="checked" name="radio">
+								<span class="checkmark"></span>
+								</label>
+								<label>Off
+								<input type="radio" name="radio">
+								<span class="checkmark"></span>
+								</label>
+							</div>
+						</div>
+					<?php else:?>
+						<div class="notificationsContainer">
+							<p>Notifications</p>
+							<div class="switches">
+								<label>On
+								<input type="radio" name="radio">
+								<span class="checkmark"></span>
+								</label>
+								<label>Off
+								<input type="radio" checked="checked" name="radio">
+								<span class="checkmark"></span>
+								</label>
+							</div>
+						</div>
+					<?php endif;?>
 					<input id="file" type="file" name="file" class="customImage">
 					<div class="preview" id="imagePreview">
 						<img src="" alt="Image Preview" class="img-preview__image">

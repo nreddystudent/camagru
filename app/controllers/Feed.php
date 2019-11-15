@@ -9,7 +9,7 @@
 		}	
 		public function indexAction(){
 			if ($_POST){
-				if ($_POST['likeData']){
+				if (array_key_exists('likeData', $_POST)){
 					$id = $_POST['likeData'];
 					$params['conditions'] = "id=$id";
 					$likes = $this->PostsModel->findFirst($params)->likes;

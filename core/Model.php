@@ -50,7 +50,7 @@
 		public function save(){
 			$fields = [];
 			foreach($this->_columnNames as $column){
-				if ($column != 'creation_date' && $column != 'verified' && $column  != 'profile_pic' && $column  != 'likes')
+				if ($column != 'creation_date' && $column != 'verified' && $column  != 'profile_pic' && $column  != 'likes' && $column  != 'notifications')
 					$fields[$column] = $this->$column;
 			}
 			//determine whether update or insert

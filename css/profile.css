@@ -78,3 +78,9 @@ body{
 .bg-danger{
 	color:white;
 }
+
+.notificationsContainer{
+	display: flex;
+	flex-direction: column;
+	color: white;
+}
