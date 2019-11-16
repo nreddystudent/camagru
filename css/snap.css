@@ -42,3 +42,9 @@ video{
 	object-fit: contain;
 	/* margin: auto; */
 }
+
+.posts{
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+}

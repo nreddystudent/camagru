@@ -8,6 +8,11 @@
 			<div class="display">
 				<video id="video" src="">Stream not avaliable</video>
 				<canvas id="stickercanvas"></canvas>
+				<div class="posts">
+				<?php foreach ($this->posts as $post):?>
+						<img src="<?=PROOT?>/images/<?=$post->name?>" alt="">
+				<?php endforeach;?>
+			</div>
 			</div>
 			<div class="stickers">
 				<img onclick="putSticker(this)" id="sticker1" src="<?=PROOT?>/stickers/sticker1.png" alt="">

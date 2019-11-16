@@ -30,7 +30,7 @@
             notifications TINYINT NOT NULL DEFAULT 1,
             profile_pic VARCHAR(255) NOT NULL DEFAULT 'Default.jpeg',
             PRIMARY KEY(id)
-            );";
+            )ENGINE=InnoDB DEFAULT CHARSET=latin1;";
         $connection->exec($statement);
         $password = password_hash("1234", PASSWORD_DEFAULT);
         $statement = "INSERT INTO users(username, email, `password`, first_name, last_name, verified)
@@ -42,12 +42,12 @@
             `session` VARCHAR(255)NOT NULL,
             user_agent VARCHAR(255) NOT NULL,
             PRIMARY KEY(id)
-            );";
+            )ENGINE=InnoDB DEFAULT CHARSET=latin1;";
         $connection->exec($statement);
         $statement = "CREATE TABLE `Posts` (
             `id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
             `name` varchar(200) NOT NULL,
-            userid INT,
+            userid INT NOT NULL,
             likes INT DEFAULT 0,
             FOREIGN KEY(userid) REFERENCES users(id) ON DELETE CASCADE 
           ) ENGINE=InnoDB DEFAULT CHARSET=latin1;";

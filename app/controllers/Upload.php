@@ -43,14 +43,15 @@
 				$sticker = imagecreatefromstring($sticker);
 				$user = $this->UsersModel->currentLoggedInUser()->id;				
 				$file_name = time().rand().".jpg";
-				imagealphablending($image);
-				imagesavealpha($image);
+				// imagealphablending($image);
+				// imagesavealpha($image);
 				$x = imagesx($image);
 				$y = imagesy($image);
 				imagecopy($image, $sticker, 0, 0, 0, 0, $x, $y);
 				imagejpeg($image, ROOT."/images/". $file_name);
 				$this->PostsModel->uploadImage($file_name, $user);
 			}
+			$this->view->posts = $this->PostsModel->getUserPosts($this->UsersModel->currentLoggedInUser()->id);
 			$this->view->render('upload/snap');
 		}
 		
