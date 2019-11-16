@@ -59,24 +59,66 @@
 		}
 		
 		public function uploadAction(){
-			if(isset($_POST["submit"]) && !empty($_FILES["file"]["name"])){
-				$targetDir = ROOT."/images/";
-				$file_name = basename($_FILES["file"]["name"]);
-				$savePath = $targetDir.$file_name;
-				$file_extension = pathinfo($savePath, PATHINFO_EXTENSION);
-				$file_name = time().rand().".$file_extension";
-				$savePath = $targetDir.$file_name;
-				$allowedTypes = array('jpg','png','jpeg','gif','pdf');
+			if(isset($_POST["imgData"])){ //&& !empty($_FILES["file"]["name"])){
+				$filter = $_POST['filter'];
+				$data = $_POST['imgData'];
+				$matches = explode(";", $data);
+				$file_extension = ltrim(ltrim($matches[0], "data:image"), "/");
+				$data = str_replace('data:image/png;base64,', '', $data);
+				$data = str_replace('data:image/pdf;base64,', '', $data);
+				$data = str_replace('data:image/jpeg;base64,', '', $data);
+				$data = str_replace('data:image/gif;base64,', '', $data);
+				$data = str_replace(' ', '+', $data);
+				$allowedTypes = array('jpg','png','jpeg','gif');
 				if (in_array($file_extension, $allowedTypes)){
-					if(move_uploaded_file($_FILES["file"]["tmp_name"], $savePath)){
+					$data = base64_decode($data);
+					$image = imagecreatefromstring($data);
+					if ($filter == 'invert(100%)'){
+						imagefilter($image, IMG_FILTER_NEGATE);
+					}
+					else if ($filter == 'grayscale(100%)'){
+						imagefilter($image, IMG_FILTER_GRAYSCALE);
+					}
+					else if ($filter == 'contrast(200%)'){
+						imagefilter($image, IMG_FILTER_CONTRAST, -50);
+					}
+					else if ($filter == 'blur(10px)'){
+						imagefilter($image, IMG_FILTER_GAUSSIAN_BLUR, 1000);
+					}
+					else if($filter == 'sepia(100%)'){
+						imagefilter($image, IMG_FILTER_GRAYSCALE);
+						imagefilter($image, IMG_FILTER_COLORIZE, 100, 50, 0);
+					}
+						$file_name = time().rand().".$file_extension";
+						$stickerData = $_POST['stickerData'];
+						$stickerData = str_replace('data:image/png;base64,', '', $stickerData);
+						$stickerData = str_replace(' ', '+', $stickerData);
+						$sticker = base64_decode($stickerData);
+						$sticker = imagecreatefromstring($sticker);
+						$x = imagesx($image);
+						$y = imagesy($image);
+						  imagealphablending($image. true);
+						//  imagealphablending($image. true);
+						 imagesavealpha($image, true);
+						imagesavealpha($sticker, true);
+						//imagecopy($image, $sticker, 0, 0, 0, 0, $x, $y);
+						 if ($file_extension == "gif")
+							imagegif($image, ROOT."/images/". $file_name);
+						if ($file_extension == "jpeg" || $file_extension == "jpg")
+							imagejpeg($image, ROOT."/images/". $file_name);
+						if ($file_extension == "png")
+							imagepng($image, ROOT."/images/". $file_name);
 						$user = $this->UsersModel->currentLoggedInUser()->id;
 						$this->PostsModel->uploadImage($file_name, $user);
-					}
+						ob_clean();
+						echo $file_name;
+						die();
 				}
 				else{
 					echo "wrong file type";
 				}	
 			}
+			$this->view->posts = $this->PostsModel->getUserPosts($this->UsersModel->currentLoggedInUser()->id);
 			$this->view->render('upload/upload');
 	}
 

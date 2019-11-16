@@ -9,7 +9,7 @@
     font-weight: bold;
     color: #ccc;
 }
-form{
+.input{
 	display: flex;
 	flex-direction: column;
 	position: absolute;
@@ -37,4 +37,15 @@ form{
     position: absolute;
     margin: auto;
     left: 0;
+}
+.upload{
+    display: flex;
+}
+.posts{
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    width: 15vw;
+    height: 20vw;
+    overflow: scroll;
 }
