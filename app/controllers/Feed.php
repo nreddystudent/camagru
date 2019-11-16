@@ -29,7 +29,6 @@
 					$id2 = $_POST['commentData'];
 					$params['conditions'] = "id=$id2";
 					$resultsC = $this->UsersModel->findFirst($params);
-					dnd($resultsC);
 					if ($resultsC->notifications == '1')
 						$this->UsersModel->sendmail($resultsC->email,"Camagru Notification","Someone Liked Your Post");
 					$this->CommentsModel->uploadComment( $_POST['post_id'],htmlspecialchars($_POST['comment']), $this->UsersModel->currentLoggedInUser()->id);

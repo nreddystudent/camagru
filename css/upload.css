@@ -20,3 +20,21 @@ form{
      display: none;
      width: 100%;  
 }
+
+.stickers{
+	overflow: scroll;
+    background: white;
+	margin: auto;
+	display: flex;
+    width: 46vw;
+    height: 12vh;
+}
+.stickers img{
+	object-fit: contain;
+	/* margin: auto; */
+}
+#stickercanvas{
+    position: absolute;
+    margin: auto;
+    left: 0;
+}

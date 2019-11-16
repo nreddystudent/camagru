@@ -6,9 +6,11 @@
 	<div class="container">
 		<div class="top-container">
 			<div class="display">
-				<video id="video" src="">Stream not avaliable</video>
-				<canvas id="stickercanvas"></canvas>
-				<div class="posts">
+				<div class="output">
+					<video id="video" src="">Stream not avaliable</video>
+					<canvas id="stickercanvas"></canvas>
+				</div>
+				<div id="posts" class="posts">
 				<?php foreach ($this->posts as $post):?>
 						<img src="<?=PROOT?>/images/<?=$post->name?>" alt="">
 				<?php endforeach;?>

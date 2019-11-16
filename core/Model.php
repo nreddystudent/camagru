@@ -118,9 +118,9 @@
 		}
 		public function getData($user = []){
 			if ($user){
-				return $this->query("SELECT * FROM {$this->_table} WHERE userid='$user'")->results();
+				return $this->query("SELECT * FROM {$this->_table} WHERE userid='$user' ORDER BY creation_date DESC")->results();
 			}
-			return $this->query("SELECT * FROM {$this->_table}")->results();
+			return $this->query("SELECT * FROM {$this->_table} ORDER BY creation_date DESC")->results();
 		}
 	}
 ?>

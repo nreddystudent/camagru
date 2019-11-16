@@ -48,6 +48,7 @@
             `id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
             `name` varchar(200) NOT NULL,
             userid INT NOT NULL,
+            creation_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
             likes INT DEFAULT 0,
             FOREIGN KEY(userid) REFERENCES users(id) ON DELETE CASCADE 
           ) ENGINE=InnoDB DEFAULT CHARSET=latin1;";
@@ -55,16 +56,17 @@
         $statement = "CREATE TABLE comments(
         id INT PRIMARY KEY AUTO_INCREMENT,
         posts_id INT,
-        comment TEXT(1000),
+        comment TEXT(1000),    
+        creation_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
         userid INT,
-        FOREIGN KEY(posts_id) REFERENCES posts(id) ON DELETE CASCADE 
+        FOREIGN KEY(posts_id) REFERENCES Posts(id) ON DELETE CASCADE 
        )DEFAULT CHARSET=utf8mb4 COLLATE utf8mb4_general_ci ENGINE=InnoDB;";
         $connection->exec($statement);
         $statement = "CREATE TABLE likes(
         id INT PRIMARY KEY AUTO_INCREMENT,
         posts_id INT,
         userid INT,
-        FOREIGN KEY(posts_id) REFERENCES posts(id) ON DELETE CASCADE 
+        FOREIGN KEY(posts_id) REFERENCES Posts(id) ON DELETE CASCADE 
        )DEFAULT CHARSET=utf8mb4 COLLATE utf8mb4_general_ci ENGINE=InnoDB;";
         $connection->exec($statement);
     }

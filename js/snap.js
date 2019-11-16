@@ -5,6 +5,7 @@ let width = 500,
 	const video = document.getElementById('video');
 	const canvas = document.getElementById('canvas');
 	const photos = document.getElementById('photos');
+	const posts = document.getElementById('posts');
 	const photoButton = document.getElementById('photo-button');
 	const uploadButton = document.getElementById('upload-button');
 	const clearButton = document.getElementById('clear-button');
@@ -20,6 +21,7 @@ let width = 500,
 	.catch(function(err){
 		console.log(`Error: ${err}` )
 	});
+	
 
 	video.addEventListener('canplay', function(e) {
 		if (!streaming){
@@ -74,15 +76,17 @@ let width = 500,
 		saveImage(imgURL, filter, stickerURL);
 		//set filter
 		img.style.filter = filter;
-
-		photos.appendChild(img);
+		
 	}
 	function saveImage(imgURL, filter, stickerURL){
 		var ajax = new XMLHttpRequest();
-		ajax.open("POST", "http://localhost:8080/camagru/upload/snap", true);
+		ajax.open("POST", "", true);
 		ajax.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 		ajax.onload = function(){
-			console.log(ajax.responseText);
+			let element = document.createElement("img");
+			element.src = "/camagru/images/"+ajax.responseText;
+			
+			posts.insertBefore(element, posts.childNodes[0]);
 		}
 		ajax.send("imgData="+imgURL+"&filter="+filter+"&stickerData="+stickerURL);
 	}
