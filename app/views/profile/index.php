@@ -21,11 +21,11 @@
 							<p>Notifications</p>
 							<div class="switches">
 								<label>On
-								<input type="radio" checked="checked" name="radio">
+								<input type="radio" value="on" checked="checked" name="radio">
 								<span class="checkmark"></span>
 								</label>
 								<label>Off
-								<input type="radio" name="radio">
+								<input type="radio" value="off" name="radio">
 								<span class="checkmark"></span>
 								</label>
 							</div>
@@ -35,11 +35,11 @@
 							<p>Notifications</p>
 							<div class="switches">
 								<label>On
-								<input type="radio" name="radio">
+								<input value="on" type="radio" name="radio">
 								<span class="checkmark"></span>
 								</label>
 								<label>Off
-								<input type="radio" checked="checked" name="radio">
+								<input type="radio" value="off" checked="checked" name="radio">
 								<span class="checkmark"></span>
 								</label>
 							</div>
@@ -57,6 +57,12 @@
 		<div class="gallery">
 			<?php foreach($posts as $image):?>
 				<img src="<?=PROOT?>/images/<?=$image->name?>" alt="">
+				<?php if($_SESSION['is_owner'] == 1): ?>
+					<form action="" method = "POST">
+						<input type="hidden" name="delete" value="<?=$image->id?>">
+						<button type="submit" value="submit">Delete Post</button>
+					</form>
+				<?php endif;?>		
 			<?php endforeach;?>
 		</div>
 	<script src="<?=PROOT?>js/profile.js"></script>

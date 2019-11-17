@@ -39,6 +39,7 @@
 			$comments = $this->CommentsModel->getComments();
 			$_SESSION['comments'] = $comments;
 			$_SESSION['posts'] = $results;
+			$this->view->currentUser = $this->UsersModel->currentLoggedInUser();
 			$this->view->render('feed/index');
 		}
 	}

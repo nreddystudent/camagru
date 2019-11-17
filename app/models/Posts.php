@@ -17,5 +17,9 @@ class Posts extends Model{
 	public function getUserPosts($user){
 			return $this->getData($user);
 	}
+
+	public function deletePost($id){
+		$this->delete($id);
+	}
 }
 ?>

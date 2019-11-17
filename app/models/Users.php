@@ -95,5 +95,11 @@
 					</html>";
 			mail($email, $subject, $message , $header);
 		}
+
+		function getNotify($uid){
+			$params['conditions'] = "id=$uid";
+			$result = $this->findFirst($params);
+			return $result->notifications;
+		}
 	}
 ?>

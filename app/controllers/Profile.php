@@ -7,39 +7,22 @@
 		}
 		
 		public function indexAction($user = []){		
-			if ($user && $user != $this->UsersModel->currentLoggedInUser()->id){
-			$_SESSION['userPosts'] = $this->PostsModel->getUserPosts($user);
-			$users = $this->UsersModel->getData();
-			foreach($users as $value){
-				if ($value->id == $users){
-					$_SESSION['profile_pic'] = $value;
-				}
-			}
-			$_SESSION['is_owner'] = 0;
-		}
-		else{
-			$_SESSION['is_owner'] = 1;
-			$_SESSION['userPosts'] = $this->PostsModel->getUserPosts($this->UsersModel->currentLoggedInUser()->id);
-			$id = $this->UsersModel->currentLoggedInUser()->id;
-			$this->view->pref = $this->UsersModel->currentLoggedInUser()->notifications;
-			$users = $this->UsersModel->getData();
-			foreach($users as $value){
-				if ($value->id == $id){
-					$_SESSION['profile_pic'] = $value->profile_pic;
-				}
-			}
-		}
 			$validation = new Validate();
-			if($_POST || !empty($_FILES["file"]["name"])){
-				if ($_POST['radio']){
+			if ($_POST){
+				if (isset($_POST['radio'])){
 					if ($_POST['radio'] == 'on'){
 						$notify = 1;
 					}
-					else
-						$notfiy = 0;
+					else{
+						$notify = 0;
+					}
 					$this->UsersModel->update($this->UsersModel->currentLoggedInUser()->id, ["notifications" => $notify]);
-			}
-				if($_POST["username"] || $_POST["email"] || $_POST["password"]){
+				}
+				if(isset($_POST['delete'])){
+					$this->PostsModel->deletePost($_POST['delete']);
+				}
+	
+				if(isset($_POST["username"]) || isset($_POST["email"]) || isset($_POST["password"])){
 					$validation->check($_POST, [
 						'username' => [
 							'display' => 'User Name',
@@ -79,7 +62,6 @@
 						$allowedTypes = array('jpg','png','jpeg','gif','pdf');
 						if (in_array($file_extension, $allowedTypes)){
 							if(move_uploaded_file($_FILES["file"]["tmp_name"], $savePath)){
-								$user = $this->UsersModel->currentLoggedInUser()->username;
 								$this->UsersModel->update($this->UsersModel->currentLoggedInUser()->id, ["profile_pic" => $file_name]);
 							}
 						}
@@ -87,8 +69,30 @@
 							echo "wrong file type";
 						}	
 				}
+		}
+		if ($user && $user != $this->UsersModel->currentLoggedInUser()->id){
+			$_SESSION['userPosts'] = $this->PostsModel->getUserPosts($user);
+			$users = $this->UsersModel->getData();
+			foreach($users as $value){
+				if ($value->id == $users){
+					$_SESSION['profile_pic'] = $value;
+				}
 			}
-	
+			$_SESSION['is_owner'] = 0;
+		}
+		else{
+			$_SESSION['is_owner'] = 1;
+			$_SESSION['userPosts'] = $this->PostsModel->getUserPosts($this->UsersModel->currentLoggedInUser()->id);
+			$id = $this->UsersModel->currentLoggedInUser()->id;
+			$users = $this->UsersModel->getData();
+			foreach($users as $value){
+				if ($value->id == $id){
+					$_SESSION['profile_pic'] = $value->profile_pic;
+				}
+			}
+			$this->view->pref = $this->UsersModel->getNotify($this->UsersModel->currentLoggedInUser()->id);
+			var_dump($this->view->pref);
+		}
 		$this->view->displayErrors = $validation->displayErrors();
 		$this->view->render('profile/index');
 	}
