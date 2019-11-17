@@ -10,5 +10,6 @@
 </head>
 <body>
 	<?= $this->content('body');?>
+	<?php include "footer.php";?>
 </body>
 </html>
