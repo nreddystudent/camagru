@@ -25,18 +25,18 @@
 				<?php if($k == 'seperator'): ?>
 					<li class="seperator"></li>
 				<?php else:?>
-					<li><a class="<?=$active?>" href="<?=$v?>"><?=$k?></a></li>
+					<a class="<?=$active?>" href="<?=$v?>"><li><?=$k?></li></a>
 				<?php endif; ?>
 			<?php endforeach;?>
 			</ul>
 		</div>
 		<?php else: 
 			$active = ($value == $currentPage) ? 'active': ''?>
-			<li><a class="<?=$active?>" href="<?=$value?>"><?=$key?></a></li>
+			<a class="<?=$active?>" href="<?=$value?>"><li><?=$key?></li></a>
 		<?php endif; ?>
 		<?php endforeach; ?>
 			<?php if (currentUser()): ?>
-			<li id="user"><a href="#"></a>Hello <?=currentUser()->first_name?></li>
+				<a href="<?=PROOT?>profile"><li id="user">Hello <?=currentUser()->first_name?></li></a>
 			<?php endif;?>
 		</ul>
 	</nav>
