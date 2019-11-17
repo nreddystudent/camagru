@@ -15,9 +15,11 @@
     padding-bottom: 50px;
 	margin: auto;
 	position: relative;
+    display: flex;
+}
+.display video{
     -webkit-transform: scaleX(-1);
     transform: scaleX(-1);
-    display: flex;
 }
 #stickercanvas{
     position: absolute;

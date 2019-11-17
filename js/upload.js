@@ -39,7 +39,8 @@ inpfile.addEventListener("change", function(){
 
 function putSticker(sticker){
 	var context = stickercanvas.getContext("2d");
-	context.drawImage(sticker, sticker.width/2, sticker.height/2, stickercanvas.width*4, stickercanvas.height*4, sticker.width/2, sticker.height/2, stickercanvas.width, stickercanvas.height);
+	console.log(sticker.height);
+	context.drawImage(sticker, 0, 0, stickercanvas.width*4, stickercanvas.height*4, 0, 0, stickercanvas.width, stickercanvas.height);
 };
 
 clearButton.addEventListener('click', function(e){
@@ -61,8 +62,6 @@ clearButton.addEventListener('click', function(e){
 				saveImage(imgURL, filter, stickerURL)
 			});
 		}
-			
-		console.log(photo.files.length);
 	});
 
 function saveImage(imgURL, filter, stickerURL){

@@ -37,6 +37,7 @@
     position: absolute;
     margin: auto;
     left: 0;
+    z-index: 5;
 }
 .upload{
     display: flex;

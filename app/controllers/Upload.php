@@ -95,19 +95,16 @@
 						$stickerData = str_replace(' ', '+', $stickerData);
 						$sticker = base64_decode($stickerData);
 						$sticker = imagecreatefromstring($sticker);
+						//imagealphablending($image. true);
+						//imagealphablending($sticker. true);
+						//imagesavealpha($image, true);
+						//imagesavealpha($sticker, true);
 						$x = imagesx($image);
 						$y = imagesy($image);
-						  imagealphablending($image. true);
-						//  imagealphablending($image. true);
-						 imagesavealpha($image, true);
-						imagesavealpha($sticker, true);
-						//imagecopy($image, $sticker, 0, 0, 0, 0, $x, $y);
-						 if ($file_extension == "gif")
-							imagegif($image, ROOT."/images/". $file_name);
-						if ($file_extension == "jpeg" || $file_extension == "jpg")
-							imagejpeg($image, ROOT."/images/". $file_name);
-						if ($file_extension == "png")
-							imagepng($image, ROOT."/images/". $file_name);
+						$x1 = imagesx($sticker);
+						$y1 = imagesy($sticker);
+						imagecopy($image, $sticker, 0, 0, 0, 0, $x, $y);
+						imagepng($image, ROOT."/images/". $file_name);
 						$user = $this->UsersModel->currentLoggedInUser()->id;
 						$this->PostsModel->uploadImage($file_name, $user);
 						ob_clean();
