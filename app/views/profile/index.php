@@ -56,12 +56,14 @@
 		</div>
 		<div class="gallery">
 			<?php foreach($posts as $image):?>
-				<img src="<?=PROOT?>/images/<?=$image->name?>" alt="">
-				<?php if($_SESSION['is_owner'] == 1): ?>
-					<form action="" method = "POST">
+				<div class="post">
+					<img src="<?=PROOT?>/images/<?=$image->name?>" alt="">
+					<?php if($_SESSION['is_owner'] == 1): ?>
+						<form action="" method = "POST">
 						<input type="hidden" name="delete" value="<?=$image->id?>">
 						<button type="submit" value="submit">Delete Post</button>
 					</form>
+				</div>
 				<?php endif;?>		
 			<?php endforeach;?>
 		</div>

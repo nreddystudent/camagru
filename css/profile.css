@@ -84,3 +84,8 @@ body{
 	flex-direction: column;
 	color: white;
 }
+
+.post{
+	display: flex;
+	flex-direction: column;
+}

@@ -91,7 +91,6 @@
 				}
 			}
 			$this->view->pref = $this->UsersModel->getNotify($this->UsersModel->currentLoggedInUser()->id);
-			var_dump($this->view->pref);
 		}
 		$this->view->displayErrors = $validation->displayErrors();
 		$this->view->render('profile/index');
