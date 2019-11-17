@@ -8,7 +8,9 @@
 	<style>
 		a{
 			text-decoration: none;
-			margin-top: 150px;
+		}
+		button{
+			width:100%
 		}
 		.links{
 			position: absolute;
@@ -25,8 +27,8 @@
 </head>
 <body>
 	<div class="links">
-		<button><a href="upload/snap">Snap a Pic</a></button>
-		<button><a href="upload/upload">Upload</a></button>
+		<a href="upload/snap"><button>Snap a Pic</button></a>
+		<a href="upload/upload"><button>Upload</button></a>
 	</div>
 </body>
 </html>
