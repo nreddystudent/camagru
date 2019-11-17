@@ -9,8 +9,9 @@
 		public function indexAction($user = []){		
 			$validation = new Validate();
 			if ($_POST){
-				if (isset($_POST['radio'])){
-					if ($_POST['radio'] == 'on'){
+				$posted_values = posted_values($_POST);
+				if (isset($posted_values['radio'])){
+					if ($posted_values['radio'] == 'on'){
 						$notify = 1;
 					}
 					else{
@@ -18,12 +19,12 @@
 					}
 					$this->UsersModel->update($this->UsersModel->currentLoggedInUser()->id, ["notifications" => $notify]);
 				}
-				if(isset($_POST['delete'])){
-					$this->PostsModel->deletePost($_POST['delete']);
+				if(isset($posted_values['delete'])){
+					$this->PostsModel->deletePost($posted_values['delete']);
 				}
 	
-				if(isset($_POST["username"]) || isset($_POST["email"]) || isset($_POST["password"])){
-					$validation->check($_POST, [
+				if(isset($posted_values["username"]) || isset($posted_values["email"]) || isset($posted_values["password"])){
+					$validation->check($posted_values, [
 						'username' => [
 							'display' => 'User Name',
 							'unique' => 'users',
@@ -42,17 +43,17 @@
 							]
 							]);
 							if ($validation->passed()){
-								if ($_POST["username"])
-									$this->UsersModel->update($this->UsersModel->currentLoggedInUser()->id, ["username" => $_POST["username"]]);
-								if ($_POST["password"]){
-									$passwordnew = password_hash($_POST["password"], PASSWORD_DEFAULT);
+								if ($posted_values["username"])
+									$this->UsersModel->update($this->UsersModel->currentLoggedInUser()->id, ["username" => $posted_values["username"]]);
+								if ($posted_values["password"]){
+									$passwordnew = password_hash($posted_values["password"], PASSWORD_DEFAULT);
 									$this->UsersModel->update($this->UsersModel->currentLoggedInUser()->id, ["password" => $passwordnew]);
 								}
-								if ($_POST["email"])
-									$this->UsersModel->update($this->UsersModel->currentLoggedInUser()->id, ["email" => $_POST["email"]]);
+								if ($posted_values["email"])
+									$this->UsersModel->update($this->UsersModel->currentLoggedInUser()->id, ["email" => $posted_values["email"]]);
 							}
 						}
-					if (!empty($_FILES["file"]["name"]) && $_POST){
+					if (!empty($_FILES["file"]["name"])){
 						$targetDir = ROOT."/profilePics/";
 						$file_name = basename($_FILES["file"]["name"]);
 						$savePath = $targetDir.$file_name;

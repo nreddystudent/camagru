@@ -10,8 +10,9 @@
 		public function loginAction(){
 			$validation = new Validate();
 			if ($_POST){
+				$posted_values = $_POST;
 				//form validation
-				$validation->check($_POST, [
+				$validation->check($posted_values, [
 					'username' => [
 						'display' => 'Username',
 						'required' => true
@@ -22,11 +23,11 @@
 					]
 				]);
 				if ($validation->passed()){
-					$user = $this->UsersModel->findByUsername($_POST['username']);
+					$user = $this->UsersModel->findByUsername($posted_values['username']);
 					if ($user->verified == 1){
 						if (isset($user->password)){
 							if ($user && password_verify(Input::get('password'), $user->password)){
-								$remember = (isset($_POST['remember_me']) && Input::get('remember_me')) ? true : false;
+								$remember = (isset($posted_values['remember_me']) && Input::get('remember_me')) ? true : false;
 								$user->login($remember);
 								Router::redirect('');
 							}
@@ -57,7 +58,7 @@
 			$posted_values = ['first_name' => '' ,'last_name' => '', 'username' => '', 'email' => '', 'password' => '', 'passwc'=> ''];
 			if ($_POST){
 				$posted_values = posted_values($_POST);
-				$validation->check($_POST, [
+				$validation->check($posted_values, [
 					'first_name' => [
 						'display' => 'First Name',
 						'required' => true
@@ -95,8 +96,8 @@
 					$newUser = new Users;
 					$token = bin2hex(random_bytes(50));
 					$content = "<a href=\"http://localhost:8080/camagru/register/verified?token=$token\">This link</a>";
-					 $newUser->registerNewUser($_POST, $token);
-					 $this->UsersModel->sendMail($_POST['email'],"Verify Your Camagru Account", $content);
+					 $newUser->registerNewUser($posted_values, $token);
+					 $this->UsersModel->sendMail($posted_values['email'],"Verify Your Camagru Account", $content);
 					 Router::redirect(''); 
 				}
 			}
@@ -126,7 +127,7 @@
 				$posted_values = ['email' => ''];
 				if ($_POST){
 					$posted_values = posted_values($_POST);
-					$validation->check($_POST, [
+					$validation->check($posted_values, [
 						'email' => [
 							'display' => 'Email',
 							'required' => true,
@@ -162,7 +163,7 @@
 			$posted_values = ['email' => '', 'password' => '', 'passwc'=> ''];
 			if ($_POST){
 				$posted_values = posted_values($_POST);
-				$validation->check($_POST, [
+				$validation->check($posted_values, [
 					'email' => [
 						'display' => 'Email',
 						'required' => true,
