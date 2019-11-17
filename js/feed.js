@@ -13,3 +13,30 @@ function likeme(likeid, postid, counter, userid){
         likebtn.children[0].style.fill = 'white';
     }
 }
+window.addEventListener('scroll', moving);
+
+function getDocumentHeight(){
+    const html = document.documentElement;
+    const body = document.body;
+    return Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
+}
+
+function pixelsScrolled(){
+    return window.pageYOffset;
+}
+
+function loadMore(){
+    let loadposts = new XMLHttpRequest;
+    postsdisplayed = document.getElementById("postCount").value;
+    loadposts.open("POST", "/camagru/feed", true);
+    loadposts.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    loadposts.onload = function(){
+        document.documentElement.innerHTML = this.response;
+    }
+    loadposts.send("postsDisplayed="+postsdisplayed)
+}
+function moving(){
+    if (pixelsScrolled() < getDocumentHeight() - window.innerHeight - 5)
+        return;
+    loadMore();
+}

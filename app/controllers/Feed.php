@@ -8,8 +8,25 @@
 			$this->load_model('Likes') ;
 		}	
 		public function indexAction(){
+
+			$results = $this->PostsModel->getPosts();
+			$postLimit = 5;
+			$postCount = count($results);
+			if ($postCount >= $postLimit)
+				$posts_d = $postLimit;
+			else
+				$posts_d = $postCount;
+			
 			if ($_POST){
 				$posted_values = $_POST;
+				if (isset($posted_values['postsDisplayed'])){
+					if ($posted_values['postsDisplayed'] + $postLimit >= $postCount){
+						$posts_d = $postCount;
+					}
+					else{
+						$posts_d += $postLimit;
+					}
+				}
 				if (array_key_exists('likeData', $posted_values)){
 					$id = $posted_values['likeData'];
 					$params['conditions'] = "id=$id";
@@ -26,7 +43,7 @@
 					echo $likes;
 					die;
 				}
-				else{
+				else if (isset($posted_values['commentData'])){
 					$id2 = $posted_values['commentData'];
 					$params['conditions'] = "id=$id2";
 					$resultsC = $this->UsersModel->findFirst($params);
@@ -35,8 +52,9 @@
 					$this->CommentsModel->uploadComment( $posted_values['post_id'],$posted_values['comment'], $this->UsersModel->currentLoggedInUser()->id);
 				}
 			}
+			
+			$this->view->posts_d = $posts_d;
 			$_SESSION['profilepics'] = $this->UsersModel->getData();
-			$results = $this->PostsModel->getPosts();
 			$comments = $this->CommentsModel->getComments();
 			$_SESSION['comments'] = $comments;
 			$_SESSION['posts'] = $results;
