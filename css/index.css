@@ -96,7 +96,8 @@ body{
 	width: 100%;
 	display: flex;
 	justify-content: space-between;
-	margin: auto;
+	flex-wrap: wrap;
+	justify-content: space-evenly;
 }
  .container .card{
 	position: relative;
@@ -210,4 +211,9 @@ body{
 	background-attachment: fixed;
 	background-position: center;
 	transition: 0.5s;
+}
+
+a{
+	text-decoration: none;
+	color:black;
 }

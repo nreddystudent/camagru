@@ -16,6 +16,7 @@
 		<div class="bgcont1" id="bgcont1">
 			<div class="bg bg1"></div>
 		</div>
+		<a href="<?=PROOT?>upload/index">
 		<div class="card" id="1" onmouseover="addContent(this.id)" onmouseout="removeContent(this.id)">
 			<div class="face face1">
 				<div class="content">
@@ -25,13 +26,14 @@
 			<div class="face face2">
 				<div class="content">
 					<p>Edit and upload images</p>
-					<a href="<?=PROOT?>upload/index">Go</a>
 				</div>
 			</div>
 		</div>
+		</a>
 		<div class="bgcont2" id="bgcont2">
 			<div class="bg bg2"></div>
 		</div>
+		<a href="feed/index">
 		<div class="card" id="2" onmouseover="addContent(this.id)" onmouseout="removeContent(this.id)">
 				<div class="face face1">
 					<div class="content">
@@ -42,13 +44,15 @@
 				<div class="face face2">
 					<div class="content">
 						<p>View community photos and feedback</p>
-						<a href="#">Go</a>
+						
 					</div>
 				</div>
 		</div>
+		</a>
 		<div class="bgcont3" id="bgcont3">
 			<div class="bg bg3"></div>
 		</div>
+		<a href="">
 		<div class="card" id="3" onmouseover="addContent(this.id)" onmouseout="removeContent(this.id)">
 				<div class="face face1">
 					<div class="content">
@@ -58,13 +62,14 @@
 				<div class="face face2">
 					<div class="content">
 						<p>Search for other users and friends</p>
-						<a href="#">Go</a>
 					</div>
 				</div>
 		</div>
+		</a>
 		<div class="bgcont4" id="bgcont4">
 			<div class="bg bg4"></div>
 		</div>
+		<a href="profile">
 		<div class="card" id="4" onmouseover="addContent(this.id)" onmouseout="removeContent(this.id)">
 				<div class="face face1">
 					<div class="content">
@@ -75,10 +80,10 @@
 				<div class="face face2">
 					<div class="content">
 						<p>Edit settings and personal preferences</p>
-						<a href="#">Go</a>
 					</div>
 				</div>
 		</div>
+		</a>
 	</div>
 	</div>
 	<script src="<?=PROOT?>/js/home.js"></script>
