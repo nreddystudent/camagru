@@ -36,7 +36,7 @@ function loadMore(){
     loadposts.send("postsDisplayed="+postsdisplayed)
 }
 function moving(){
-    if (pixelsScrolled() < getDocumentHeight() - window.innerHeight - 5)
+    if (pixelsScrolled() < getDocumentHeight() - window.innerHeight)
         return;
     loadMore();
 }
