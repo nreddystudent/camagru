@@ -10,7 +10,9 @@ let filter = 'none';
 let imgURL = null;
 inpfile.addEventListener("change", function(){
 	const file=this.files[0];
-	if (file){
+	console.log(file);
+	if (file && file.type == "image/png" || file.type == "image/gif" || file.type == "image/jpeg" || file.type == "image/jpg"){
+		stickercanvas.style.display = "block";
 		const reader = new FileReader;
 		previewDefaultText.style.display = "none";
 		previewImage.style.display = "block";
@@ -69,9 +71,11 @@ function saveImage(imgURL, filter, stickerURL){
 	ajax.open("POST", "", true);
 	ajax.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 	ajax.onload = function(){
-		let element = document.createElement("img");
-		element.src = "/camagru/images/"+ajax.responseText;
-		posts.insertBefore(element, posts.childNodes[0]);
+		if (ajax.responseText != "wrong file type"){
+			let element = document.createElement("img");
+			element.src = "/camagru/images/"+ajax.responseText;
+			posts.insertBefore(element, posts.childNodes[0]);
+		}
 	}
 	ajax.send("imgData="+imgURL+"&filter="+filter+"&stickerData="+stickerURL);
 }

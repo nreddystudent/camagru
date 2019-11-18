@@ -59,7 +59,7 @@
 		}
 		
 		public function uploadAction(){
-			if(isset($_POST["imgData"])){ //&& !empty($_FILES["file"]["name"])){
+			if(isset($_POST["imgData"])){
 				$filter = $_POST['filter'];
 				$data = $_POST['imgData'];
 				$matches = explode(";", $data);
@@ -95,10 +95,10 @@
 						$stickerData = str_replace(' ', '+', $stickerData);
 						$sticker = base64_decode($stickerData);
 						$sticker = imagecreatefromstring($sticker);
-						//imagealphablending($image. true);
+						imagealphablending($image. true);
 						//imagealphablending($sticker. true);
-						//imagesavealpha($image, true);
-						//imagesavealpha($sticker, true);
+						imagesavealpha($image, true);
+						imagesavealpha($sticker, true);
 						$x = imagesx($image);
 						$y = imagesy($image);
 						$x1 = imagesx($sticker);
@@ -112,7 +112,9 @@
 						die();
 				}
 				else{
+					ob_clean();
 					echo "wrong file type";
+					die();
 				}	
 			}
 			$this->view->posts = $this->PostsModel->getUserPosts($this->UsersModel->currentLoggedInUser()->id);
