@@ -41,13 +41,13 @@
 				$sticker = base64_decode($sticker);
 				$sticker = imagecreatefromstring($sticker);
 				$user = $this->UsersModel->currentLoggedInUser()->id;				
-				$file_name = time().rand().".ppg";
+				$file_name = time().rand().".png";
 				 //imagealphablending($image);
 				// imagesavealpha($image);
 				$x = imagesx($image);
 				$y = imagesy($image);
 				imagecopy($image, $sticker, 0, 0, 0, 0, $x, $y);
-				imagejpeg($image, ROOT."/images/". $file_name);
+				imagepng($image, ROOT."/images/". $file_name);
 				$this->PostsModel->uploadImage($file_name, $user);
 				ob_clean();
 				echo $file_name;
@@ -88,13 +88,13 @@
 						imagefilter($image, IMG_FILTER_GRAYSCALE);
 						imagefilter($image, IMG_FILTER_COLORIZE, 100, 50, 0);
 					}
-						$file_name = time().rand().".$file_extension";
+						$file_name = time().rand().".png";
 						$stickerData = $_POST['stickerData'];
 						$stickerData = str_replace('data:image/png;base64,', '', $stickerData);
 						$stickerData = str_replace(' ', '+', $stickerData);
 						$sticker = base64_decode($stickerData);
 						$sticker = imagecreatefromstring($sticker);
-						imagealphablending($image. true);
+						imagealphablending($image, true);
 						//imagealphablending($sticker. true);
 						imagesavealpha($image, true);
 						imagesavealpha($sticker, true);

@@ -54,3 +54,6 @@
     height: 20vw;
     overflow: scroll;
 }
+.footer{
+    display: none;
+}

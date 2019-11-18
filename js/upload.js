@@ -8,9 +8,20 @@ const clearButton = document.getElementById('clear-button');
 const uploadButton = document.getElementById("submit-button");
 let filter = 'none';
 let imgURL = null;
+// previewImage.width= width;
+// previewImage.height = height;
+let c = null;
+previewImage.addEventListener("load", function(){
+	let width = previewImage.width;
+	let height = previewImage.height;
+	c = document.createElement('canvas');
+	c.width = width;
+	c.height = height;
+	resizecanvas(c);
+	c.getContext('2d').drawImage(previewImage,0,0,width,height);
+})
 inpfile.addEventListener("change", function(){
 	const file=this.files[0];
-	console.log(file);
 	if (file && file.type == "image/png" || file.type == "image/gif" || file.type == "image/jpeg" || file.type == "image/jpg"){
 		stickercanvas.style.display = "block";
 		const reader = new FileReader;
@@ -19,7 +30,7 @@ inpfile.addEventListener("change", function(){
 		
 		reader.addEventListener("load", function(){
 			previewImage.setAttribute("src", this.result);
-		});
+			});
 		reader.readAsDataURL(file); 
 	}
 	else{
@@ -56,7 +67,7 @@ clearButton.addEventListener('click', function(e){
 			const reader = new FileReader();
 			reader.readAsDataURL(photo.files[0]);
 			reader.addEventListener("load", function(e){
-				imgURL = reader.result;
+				imgURL = c.toDataURL();
 				let stickerURL = stickercanvas.toDataURL('image/png');
 				saveImage(imgURL, filter, stickerURL)
 			});
@@ -72,13 +83,14 @@ function saveImage(imgURL, filter, stickerURL){
 			let element = document.createElement("img");
 			element.src = "/camagru/images/"+ajax.responseText;
 			posts.insertBefore(element, posts.childNodes[0]);
+			console.log(ajax.responseText);
 		}
 	}
 	ajax.send("imgData="+imgURL+"&filter="+filter+"&stickerData="+stickerURL);
 }
 function resizecanvas(size){
-	let w = size.offsetWidth;
-	let h = size.offsetHeight;
+	let w = size.width;
+	let h = size.height;
 	stickercanvas.width = w;
 	stickercanvas.height = h;
 }
