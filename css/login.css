@@ -72,9 +72,9 @@ body{
 
 .text-primary{
 	text-decoration: none;
-	color:white;
-	border-radius: 5px;
-	background:#7158e2;
-	padding: 11px;
-	margin-left: 25vw;
+    color: white;
+    border-radius: 5px;
+    background: #7158e2;
+    padding: 11px;
+    margin-left: 12vw;
 }
