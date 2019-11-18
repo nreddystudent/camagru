@@ -37,8 +37,8 @@
 						$resultsL = $this->UsersModel->findFirst($params);
 						if ($resultsL->notifications == '1')
 							$this->UsersModel->sendmail($resultsL->email,"Camagru Notification","Someone Liked Your Post");
-						$likes+=1;
-						$this->PostsModel->update($id, ['likes' => $likes]);
+							$likes+=1;
+							$this->PostsModel->update($id, ['likes' => $likes]);
 					}
 					echo $likes;
 					die;
@@ -48,7 +48,7 @@
 					$params['conditions'] = "id=$id2";
 					$resultsC = $this->UsersModel->findFirst($params);
 					if ($resultsC->notifications == '1')
-						$this->UsersModel->sendmail($resultsC->email,"Camagru Notification","Someone Liked Your Post");
+						$this->UsersModel->sendmail($resultsC->email,"Camagru Notification","Someone Commented On Your Post");
 					$this->CommentsModel->uploadComment( $posted_values['post_id'],$posted_values['comment'], $this->UsersModel->currentLoggedInUser()->id);
 				}
 			}
