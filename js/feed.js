@@ -1,4 +1,6 @@
 function likeme(likeid, postid, counter, userid){
+    console.log(userid);
+    console.log(postid);
     let likebtn = document.getElementById(likeid);
         ajax = new XMLHttpRequest;
         ajax.open("POST", "/camagru/feed", true);
