@@ -16,11 +16,9 @@ inpfile.addEventListener("change", function(){
 		const reader = new FileReader;
 		previewDefaultText.style.display = "none";
 		previewImage.style.display = "block";
-
+		
 		reader.addEventListener("load", function(){
-			 previewImage.setAttribute("src", this.result);
-			 stickercanvas.width = previewImage.width;
-			 stickercanvas.height = previewImage.height;
+			previewImage.setAttribute("src", this.result);
 		});
 		reader.readAsDataURL(file); 
 	}
@@ -41,8 +39,7 @@ inpfile.addEventListener("change", function(){
 
 function putSticker(sticker){
 	var context = stickercanvas.getContext("2d");
-	console.log(sticker.height);
-	context.drawImage(sticker, 0, 0, stickercanvas.width*4, stickercanvas.height*4, 0, 0, stickercanvas.width, stickercanvas.height);
+	context.drawImage(sticker, 0, 0, stickercanvas.width, stickercanvas.height);
 };
 
 clearButton.addEventListener('click', function(e){
@@ -78,4 +75,10 @@ function saveImage(imgURL, filter, stickerURL){
 		}
 	}
 	ajax.send("imgData="+imgURL+"&filter="+filter+"&stickerData="+stickerURL);
+}
+function resizecanvas(size){
+	let w = size.offsetWidth;
+	let h = size.offsetHeight;
+	stickercanvas.width = w;
+	stickercanvas.height = h;
 }
