@@ -83,7 +83,6 @@ function saveImage(imgURL, filter, stickerURL){
 			let element = document.createElement("img");
 			element.src = "/camagru/images/"+ajax.responseText;
 			posts.insertBefore(element, posts.childNodes[0]);
-			console.log(ajax.responseText);
 		}
 	}
 	ajax.send("imgData="+imgURL+"&filter="+filter+"&stickerData="+stickerURL);
