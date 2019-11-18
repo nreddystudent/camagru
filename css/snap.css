@@ -53,3 +53,6 @@ video{
     height: 20vw;
     overflow: scroll;
 }
+.output{
+    position: relative;
+}

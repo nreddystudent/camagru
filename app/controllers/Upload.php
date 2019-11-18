@@ -11,7 +11,6 @@
 				$this->view->render('upload/index');
 			}
 
-
 		public function snapAction(){
 			if (isset($_POST['imgData'])){
 				$filter = $_POST['filter'];
@@ -42,7 +41,7 @@
 				$sticker = base64_decode($sticker);
 				$sticker = imagecreatefromstring($sticker);
 				$user = $this->UsersModel->currentLoggedInUser()->id;				
-				$file_name = time().rand().".jpg";
+				$file_name = time().rand().".ppg";
 				 //imagealphablending($image);
 				// imagesavealpha($image);
 				$x = imagesx($image);
