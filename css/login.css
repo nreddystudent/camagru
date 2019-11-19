@@ -82,3 +82,7 @@ body{
 	text-decoration: none;
 	color:red;
 }
+.bg-danger{
+	color: white;
+	padding-bottom: 20px;
+}

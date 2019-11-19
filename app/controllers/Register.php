@@ -191,7 +191,7 @@
 						$newpass = password_hash($posted_values['password'], PASSWORD_DEFAULT);
 						$this->UsersModel->update($result->id, ['token' => '']);
 						$this->UsersModel->update($result->id, ['password' => $newpass]);
-						echo "password was changed";
+						Router::redirect('register/login');
 					}
 						
 					else{
