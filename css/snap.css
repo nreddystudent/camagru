@@ -55,3 +55,6 @@ video{
 .output{
     position: relative;
 }
+#photo-button{
+    display: none;
+}

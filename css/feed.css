@@ -94,6 +94,7 @@ img.profilepics{
   .commentcontainer{
       display: flex;
       background-color: black;
+      word-wrap: anywhere;
   }
 
   .comment{

@@ -32,6 +32,7 @@ let width = 500,
 			canvas.setAttribute('height', height);
 			resizecanvas(video);
 			streaming = true;
+			photoButton.style.display = "block";
 		}		
 	}, false);
 // Photo button event
