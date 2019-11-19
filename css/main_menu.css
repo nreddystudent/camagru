@@ -113,4 +113,8 @@ ul a{
 	.active{
 		display: block;
 	}
+
+	nav{
+		background:rgba(255,255,255,0.3);
+	}
 }
