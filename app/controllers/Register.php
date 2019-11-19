@@ -84,7 +84,8 @@
 					'password' => [
 						'display' => 'Password',
 						'required' => true,
-						'min' => 6
+						'min' => 6,
+						'strong' => true
 					],
 					'passwc' => [
 						'display' => 'Confirm Password',
@@ -173,7 +174,8 @@
 					'password' => [
 						'display' => 'Password',
 						'required' => true,
-						'min' => 6
+						'min' => 6,
+						'strong' => true
 					],
 					'passwc' => [
 						'display' => 'Confirm Password',

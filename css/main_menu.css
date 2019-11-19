@@ -17,12 +17,12 @@ nav{
 	background-repeat: no-repeat;
 	background-size: cover;
 }
-ul{
+#nav{
 	width: 80%;
 	margin: 0 auto;
 	padding: 0;
 }
-ul li{
+#nav li{
 	list-style: none;
 	display: inline-block;
 	padding: 5vh 20px;
@@ -63,13 +63,13 @@ ul li{
 	.dropdown:hover .dropdown-content {display: block;}
 
 	.dropdown:hover .dropbtn {background-color: #3e8e41;}
-ul li:hover{
+#nav li:hover{
 	background: #e91e63;
 }
 #user{
 	color: #fff;
 }
-ul a{
+#nav a{
 	color: #fff;
 	text-decoration: none;
 }
@@ -102,22 +102,20 @@ ul a{
 	.toggle{
 		display: block;
 	}
-	ul{
+	#nav{
 		width: 100%;
 		display: none;
 	}
-	ul li {
+	#nav li {
 		display: block;
 		text-align: center;
+		color: #000000;
 	}
 	.active{
-		display: block;
+		display: block !important;
 	}
 
 	nav{
 		background:rgba(255,255,255,1);
-	}
-	ul a{
-		color: #000000;
 	}
 }

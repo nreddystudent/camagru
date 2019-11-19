@@ -39,7 +39,8 @@
 						],
 						'password' => [
 							'display' => 'Password',
-							'min' => 6
+							'min' => 6,
+							'strong' => true
 							]
 							]);
 							if ($validation->passed()){

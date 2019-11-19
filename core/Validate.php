@@ -67,6 +67,25 @@
 								$this->addError(["{$display} must be an email adress", $item]);
 							}
 							break;
+
+						case 'strong':
+							$uppercase = preg_match('@[A-Z]@', $value);
+							$lowercase = preg_match('@[a-z]@', $value);
+							$number = preg_match('@[0-9]@', $value);
+							$special_chars = preg_match('@[^\w]@', $value);
+							if(!$uppercase) {
+								$this->addError(["{$display} must include at least one uppercase letter.", $item]);
+							}
+							if(!$lowercase) {
+								$this->addError(["{$display} must include at least on lowercase letter.", $item]);
+							}
+							if(!$number) {
+								$this->addError(["{$display} must include at least one number.", $item]);
+							}
+							if(!$special_chars) {
+								$this->addError(["{$display} must include at least one special character.", $item]);
+							}
+							break;
 				 }
 			 }
 			}
