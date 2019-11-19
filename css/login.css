@@ -78,3 +78,7 @@ body{
     padding: 11px;
     margin-left: 72%;
 }
+.forgot{
+	text-decoration: none;
+	color:red;
+}

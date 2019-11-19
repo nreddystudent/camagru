@@ -22,7 +22,6 @@ body{
 }
 body{
     background: url(https://images.unsplash.com/photo-1493780758133-e5cfb0d00354?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2097&q=80);
-    /* background-size: cover; */
     background-repeat:repeat-y ;
 }
 .posts .photo{
@@ -81,7 +80,7 @@ button{
     stroke-width: .5;
   }
   .likebtns svg{
-     width: 2vw;
+     width: 50%;
      height: 4vh;
   }
 
@@ -95,7 +94,6 @@ img.profilepics{
   .commentcontainer{
       display: flex;
       background-color: black;
-      /* justify-content: space-between; */
   }
 
   .comment{
@@ -129,4 +127,7 @@ img.profilepics{
 }
 .icons p{
     color:white;
+}
+.commentField{
+    width: 50%;
 }

@@ -115,6 +115,9 @@ ul a{
 	}
 
 	nav{
-		background:rgba(255,255,255,0.3);
+		background:rgba(255,255,255,1);
+	}
+	ul a{
+		color: #000000;
 	}
 }

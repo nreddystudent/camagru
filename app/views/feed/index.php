@@ -47,7 +47,7 @@
 					<?php endforeach;?>
 					<?php if($this->currentUser):?>
 						<form action="" method="POST">
-							<input type="text" name="comment">
+							<input class="commentField" type="text" name="comment">
 							<input type="hidden" name="post_id" value='<?=($results[$x]->id)?>'>
 							<input type="hidden" name="commentData" value='<?=($results[$x]->userid)?>'>
 							<button class="postbtns" type="submit" value="post"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 172 172" style=" fill:#686de0;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g><path d="M157.66667,86c0,39.41667 -32.25,71.66667 -71.66667,71.66667c-39.41667,0 -71.66667,-32.25 -71.66667,-71.66667c0,-39.41667 32.25,-71.66667 71.66667,-71.66667c39.41667,0 71.66667,32.25 71.66667,71.66667z" fill="#000000"></path><path d="M115.74167,84.925l-29.74167,-29.74167l-29.74167,29.74167l-5.01667,-5.01667l34.75833,-34.75833l34.75833,34.75833z" fill="#ffffff"></path><path d="M82.41667,53.75h7.16667v68.08333h-7.16667z" fill="#ffffff"></path></g></g></svg></button>
