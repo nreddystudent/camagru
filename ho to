@@ -1,0 +1,5 @@
+Install Xampp/Ampp
+Add camagru to www folder
+Edit php.ini find sendmail_path
+remove semicolon and add path to sendmail.exe 
+edit sendmail.ini and add port gmail smtp and gmail details
