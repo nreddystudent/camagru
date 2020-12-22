@@ -59,14 +59,16 @@
         comment TEXT(1000),    
         creation_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
         userid INT,
-        FOREIGN KEY(posts_id) REFERENCES Posts(id) ON DELETE CASCADE 
+        FOREIGN KEY(posts_id) REFERENCES Posts(id) ON DELETE CASCADE,
+        FOREIGN KEY(userid) REFERENCES users(id) ON DELETE CASCADE 
        )DEFAULT CHARSET=utf8mb4 COLLATE utf8mb4_general_ci ENGINE=InnoDB;";
         $connection->exec($statement);
         $statement = "CREATE TABLE likes(
         id INT PRIMARY KEY AUTO_INCREMENT,
         posts_id INT,
         userid INT,
-        FOREIGN KEY(posts_id) REFERENCES Posts(id) ON DELETE CASCADE 
+        FOREIGN KEY(posts_id) REFERENCES Posts(id) ON DELETE CASCADE,
+        FOREIGN KEY(userid) REFERENCES users(id) ON DELETE CASCADE
        )DEFAULT CHARSET=utf8mb4 COLLATE utf8mb4_general_ci ENGINE=InnoDB;";
         $connection->exec($statement);
     }
