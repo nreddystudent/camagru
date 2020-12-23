@@ -41,6 +41,7 @@
             user_id INT NOT NULL,
             `session` VARCHAR(255)NOT NULL,
             user_agent VARCHAR(255) NOT NULL,
+            FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE, 
             PRIMARY KEY(id)
             )ENGINE=InnoDB DEFAULT CHARSET=latin1;";
         $connection->exec($statement);
