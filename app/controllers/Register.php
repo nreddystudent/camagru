@@ -96,7 +96,7 @@
 				if ($validation->passed()){
 					$newUser = new Users;
 					$token = bin2hex(random_bytes(50));
-					$content = "<a href=\"http://localhost:8080/camagru/register/verified?token=$token\">This link</a>";
+					$content = "<a href=\"http://localhost/camagru/register/verified?token=$token\">This link</a>";
 					 $newUser->registerNewUser($posted_values, $token);
 					 $this->UsersModel->sendMail($posted_values['email'],"Verify Your Camagru Account", $content);
 					 Router::redirect(''); 
@@ -143,7 +143,7 @@
 						if ($result->token == '' && $result->verified == 1){
 							$token = bin2hex(random_bytes(50));
 							$this->UsersModel->update($result->id, ['token' => $token]);
-							$content = "<a href=\"http://localhost:8080/camagru/register/changepass?token=$token\">This link</a>";
+							$content = "<a href=\"http://localhost/camagru/register/changepass?token=$token\">This link</a>";
 							$this->UsersModel->sendMail($posted_values['email'],"Change Camagru Password", $content);
 						}
 						else{
