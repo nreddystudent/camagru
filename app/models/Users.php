@@ -51,10 +51,10 @@
 			if ($userSession->user_id != ''){
 				$user = new self((int)$userSession->user_id);
 			}
-			if ($user){
+			if (isset($user)){
 				$user->login();
+				return $user;
 			}
-			return $user;
 		}
 
 		public function logout(){
