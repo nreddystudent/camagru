@@ -1,6 +1,6 @@
 ## Setup instructions
 
-Step 1: install XAMPP and start apache and mySQL 
+Step 1: install XAMPP and start apache and mySQL   
 Step 2 : clone project in htdocs folder    
 Step 3 : open xampp launch apache and go to localhost/camagru/config/setup.php  
 Step 4: open localhost/camagru
