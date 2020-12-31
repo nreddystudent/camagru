@@ -1,12 +1,12 @@
-Setup instructions
+## Setup instructions
 
-Step 1: install XAMPP
-Step 2 : clone project in htdocs folder
-Step 3 : open xampp launch apache and go to localhost/camagru/config/setup.php
+Step 1: install XAMPP  
+Step 2 : clone project in htdocs folder    
+Step 3 : open xampp launch apache and go to localhost/camagru/config/setup.php  
 Step 4: open localhost/camagru
 
 
-Documentation
+## Documentation
 
 This project uses MVC:
 Model folder - contains DB related things
@@ -33,7 +33,7 @@ used to determine what the navbar displays in different states of the app.
 DB credentials can be edited in database.php. All file names are in CamelCase.
 
 
-Test cases:
+# Test cases:
 
 1) Can anything be SQL or HTML injected (check PDO and sanitization is present everywhere)
 2) Can a user Register
@@ -47,7 +47,7 @@ Test cases:
 10) can a user view the feed while logged out
 11) can a user go to the upload page forcefully while logged out
     
-Expected Outcomes:
+# Expected Outcomes:
 1) All input is sanitized with relavant functions
 2) A user can register correctly
 3) A user can login after verifying their account
