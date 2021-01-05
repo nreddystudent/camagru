@@ -21,5 +21,9 @@ class Posts extends Model{
 	public function deletePost($id){
 		$this->delete($id);
 	}
+
+	public function getPostData($userid=[]){
+		return $this->getJoinData($userid);
+	}
 }
 ?>

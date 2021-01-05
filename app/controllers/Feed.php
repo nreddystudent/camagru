@@ -9,7 +9,7 @@
 		}	
 		public function indexAction(){
 
-			$results = $this->PostsModel->getPosts();
+			$results = $this->PostsModel->getPostData();
 			$postLimit = 5;
 			$postCount = count($results);
 			if ($postCount >= $postLimit)
@@ -49,13 +49,13 @@
 					$resultsC = $this->UsersModel->findFirst($params);
 					if ($resultsC->notifications == '1')
 						$this->UsersModel->sendmail($resultsC->email,"Camagru Notification","Someone Commented On Your Post");
-					$this->CommentsModel->uploadComment( $posted_values['post_id'],$posted_values['comment'], $this->UsersModel->currentLoggedInUser()->id);
+					$this->CommentsModel->uploadComment( intval($posted_values['post_id']),$posted_values['comment'], intval($this->UsersModel->currentLoggedInUser()->id));
 				}
 			}
 			
 			$this->view->posts_d = $posts_d;
 			$_SESSION['profilepics'] = $this->UsersModel->getData();
-			$comments = $this->CommentsModel->getComments();
+			$comments = $this->CommentsModel->getCommentData($this->UsersModel->currentLoggedInUser());
 			$_SESSION['comments'] = $comments;
 			$_SESSION['posts'] = $results;
 			$this->view->currentUser = $this->UsersModel->currentLoggedInUser();

@@ -16,7 +16,7 @@
 		<div class="bgcont1" id="bgcont1">
 			<div class="bg bg1"></div>
 		</div>
-		<a href="<?=PROOT?>upload/index">
+		<a href="<?=PROOT?>upload">
 		<div class="card" id="1" onmouseover="addContent(this.id)">
 			<div class="face face1">
 				<div class="content">

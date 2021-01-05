@@ -122,5 +122,11 @@
 			}
 			return $this->query("SELECT * FROM {$this->_table} ORDER BY creation_date DESC")->results();
 		}
+		public function getJoinData($user = []){
+			if ($user){
+				return $this->query("SELECT * FROM {$this->_table} JOIN users ON {$this->_table}.userid=users.id ORDER BY users.creation_date DESC")->results();
+			}
+			return $this->query("SELECT * FROM {$this->_table} JOIN users ON {$this->_table}.userid=users.id ORDER BY users.creation_date DESC")->results();
+		}
 	}
 ?>

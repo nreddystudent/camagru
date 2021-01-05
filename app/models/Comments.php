@@ -13,6 +13,10 @@ class Comments extends Model{
 		public function getComments(){
 			return $this->getData();
 		}
+		public function getCommentData($userid){
+			return $this->getJoinData($userid);
+		}
+		
 	}
 
 ?>
